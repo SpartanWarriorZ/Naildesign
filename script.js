@@ -218,6 +218,68 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+
+    
+    // Close Calendly popup function
+    function closeCalendlyPopup() {
+        const calendlyPopup = document.getElementById('calendlyPopup');
+        const calendlyIframe = document.getElementById('calendlyIframe');
+        if (calendlyPopup) {
+            calendlyPopup.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        if (calendlyIframe) {
+            calendlyIframe.src = '';
+        }
+    }
+    
+    // Überprüfe ob Calendly-HTML existiert
+    console.log('Checking for Calendly HTML elements...');
+    const calendlyCheck = document.getElementById('calendlyPopup');
+    if (calendlyCheck) {
+        console.log('✅ Calendly HTML found:', calendlyCheck);
+    } else {
+        console.error('❌ Calendly HTML NOT found!');
+        console.log('Available elements with "calendly" in ID:', 
+            Array.from(document.querySelectorAll('[id*="calendly"]')).map(el => el.id)
+        );
+    }
+    
+    // Close Calendly buttons
+    const closeCalendly = document.getElementById('closeCalendly');
+    if (closeCalendly) {
+        closeCalendly.addEventListener('click', closeCalendlyPopup);
+    }
+    
+    // Close Calendly on overlay click
+    const calendlyPopup = document.getElementById('calendlyPopup');
+    if (calendlyPopup) {
+        calendlyPopup.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCalendlyPopup();
+            }
+        });
+    }
+    
+    // Close Calendly on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && calendlyPopup && calendlyPopup.classList.contains('active')) {
+            closeCalendlyPopup();
+        }
+    });
+    
+    // Prevent scroll propagation on Calendly content
+    const calendlyContent = document.querySelector('.calendly-content');
+    if (calendlyContent) {
+        calendlyContent.addEventListener('wheel', function(e) {
+            e.stopPropagation();
+        }, { passive: false });
+        
+        calendlyContent.addEventListener('touchmove', function(e) {
+            e.stopPropagation();
+        }, { passive: false });
+    }
+    
     // Booking Popup Functionality
     const bookingPopup = document.getElementById('bookingPopup');
     const closeBooking = document.getElementById('closeBooking');
@@ -294,7 +356,80 @@ document.addEventListener('DOMContentLoaded', function() {
     // Next step
     nextStep.addEventListener('click', function() {
         if (selectedService) {
-            showStep(2);
+            console.log('Next button clicked, selected service:', selectedService);
+            
+            // Speichere selectedService bevor closeBookingPopup() es zurücksetzt
+            const serviceToBook = {
+                name: selectedService.name,
+                price: selectedService.price,
+                service: selectedService.service
+            };
+            
+            // Prüfe zuerst ob Calendly-Elemente existieren
+            const calendlyIframe = document.getElementById('calendlyIframe');
+            const calendlyPopup = document.getElementById('calendlyPopup');
+            
+            console.log('Calendly elements check:', {
+                iframe: calendlyIframe,
+                popup: calendlyPopup
+            });
+            
+            if (!calendlyIframe || !calendlyPopup) {
+                console.error('Calendly elements not found!');
+                alert('Calendly-Elemente nicht gefunden. Bitte laden Sie die Seite neu.');
+                return;
+            }
+            
+            // Direkt zum Calendly-Popup weiterleiten statt zum Kontaktformular
+            closeBookingPopup();
+            
+            // Kurze Verzögerung um sicherzustellen, dass das erste Modal geschlossen ist
+            setTimeout(() => {
+                console.log('Opening Calendly after delay...');
+                console.log('Service to book:', serviceToBook);
+                
+                // Direkte Calendly-Integration ohne Funktionsaufruf
+                const baseUrl = "https://calendly.com/leonidas-pyka/30min";
+                const params = new URLSearchParams({
+                    background_color: "000000",
+                    text_color: "FFFFFF",
+                    primary_color: "FFD700",
+                    hide_landing_page_details: "1",
+                    hide_event_type_details: "1",
+                    a1: serviceToBook.name
+                });
+                
+                const fullUrl = `${baseUrl}?${params.toString()}`;
+                console.log('Calendly URL:', fullUrl);
+                
+                // Calendly-Elemente direkt verwenden
+                calendlyIframe.src = fullUrl;
+                
+                // Update service display
+                const serviceNameElement = document.getElementById('calendlyServiceName');
+                const servicePriceElement = document.getElementById('calendlyServicePrice');
+                
+                console.log('Service display elements:', {
+                    nameElement: serviceNameElement,
+                    priceElement: servicePriceElement
+                });
+                
+                if (serviceNameElement) {
+                    serviceNameElement.textContent = serviceToBook.name;
+                }
+                
+                if (servicePriceElement) {
+                    servicePriceElement.textContent = serviceToBook.price;
+                }
+                
+                calendlyPopup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                console.log('Calendly popup opened successfully');
+                console.log('Calendly popup classes:', calendlyPopup.classList.toString());
+            }, 100);
+        } else {
+            console.log('No service selected');
         }
     });
     
@@ -346,13 +481,74 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Buchungs-Buttons
+    // Prevent scroll propagation on modal content
+    const bookingContent = document.querySelector('.booking-content');
+    if (bookingContent) {
+        bookingContent.addEventListener('wheel', function(e) {
+            e.stopPropagation();
+        }, { passive: false });
+        
+        bookingContent.addEventListener('touchmove', function(e) {
+            e.stopPropagation();
+        }, { passive: false });
+    }
+    
+
+    
+    // Buchungs-Buttons - jetzt mit Calendly Integration
     const bookingButtons = document.querySelectorAll('.btn-book, .btn-primary');
     bookingButtons.forEach(button => {
         if (button.textContent.includes('Buchen') || button.textContent.includes('Termin vereinbaren')) {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
-                openBookingPopup();
+                
+                // Prüfe, ob wir in einem Service-Item sind
+                const serviceItem = this.closest('.service-item');
+                if (serviceItem) {
+                    // Direkt aus der Services-Sektion - öffne Calendly
+                    const serviceName = serviceItem.querySelector('h3').textContent;
+                    
+                    // Direkte Calendly-Integration
+                    const baseUrl = "https://calendly.com/leonidas-pyka/30min";
+                    const params = new URLSearchParams({
+                        background_color: "000000",
+                        text_color: "FFFFFF",
+                        primary_color: "FFD700",
+                        hide_landing_page_details: "1",
+                        hide_event_type_details: "1",
+                        a1: serviceName
+                    });
+                    
+                    const fullUrl = `${baseUrl}?${params.toString()}`;
+                    
+                    // Calendly-Elemente direkt verwenden
+                    const calendlyIframe = document.getElementById('calendlyIframe');
+                    const calendlyPopup = document.getElementById('calendlyPopup');
+                    
+                    if (calendlyIframe && calendlyPopup) {
+                        calendlyIframe.src = fullUrl;
+                        
+                        // Update service display
+                        const serviceNameElement = document.getElementById('calendlyServiceName');
+                        const servicePriceElement = document.getElementById('calendlyServicePrice');
+                        
+                        if (serviceNameElement) {
+                            serviceNameElement.textContent = serviceName;
+                        }
+                        
+                        if (servicePriceElement) {
+                            servicePriceElement.textContent = serviceItem.querySelector('.price').textContent;
+                        }
+                        
+                        calendlyPopup.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        window.open(fullUrl, '_blank');
+                    }
+                } else {
+                    // Aus anderen Bereichen - öffne normales Buchungs-Modal
+                    openBookingPopup();
+                }
             });
         }
     });
