@@ -218,14 +218,141 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Booking Popup Functionality
+    const bookingPopup = document.getElementById('bookingPopup');
+    const closeBooking = document.getElementById('closeBooking');
+    const cancelBooking = document.getElementById('cancelBooking');
+    const nextStep = document.getElementById('nextStep');
+    const backStep = document.getElementById('backStep');
+    const submitBooking = document.getElementById('submitBooking');
+    const closeSuccess = document.getElementById('closeSuccess');
+    const serviceOptions = document.querySelectorAll('.service-option');
+    
+    let selectedService = null;
+    let currentStep = 1;
+    
+    // Open booking popup
+    function openBookingPopup() {
+        bookingPopup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        resetBookingForm();
+    }
+    
+    // Close booking popup
+    function closeBookingPopup() {
+        bookingPopup.classList.remove('active');
+        document.body.style.overflow = '';
+        resetBookingForm();
+    }
+    
+    // Reset booking form
+    function resetBookingForm() {
+        selectedService = null;
+        currentStep = 1;
+        serviceOptions.forEach(option => option.classList.remove('selected'));
+        nextStep.disabled = true;
+        document.getElementById('selectedServiceName').textContent = '-';
+        document.getElementById('selectedServicePrice').textContent = '-';
+        
+        // Reset form fields
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('date').value = '';
+        document.getElementById('time').value = '';
+        document.getElementById('notes').value = '';
+        
+        // Show step 1
+        showStep(1);
+    }
+    
+    // Show specific step
+    function showStep(step) {
+        document.querySelectorAll('.booking-step').forEach(s => s.classList.remove('active'));
+        document.getElementById(`step${step}`).classList.add('active');
+        currentStep = step;
+    }
+    
+    // Service selection
+    serviceOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            serviceOptions.forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+            
+            selectedService = {
+                name: this.querySelector('h4').textContent,
+                price: this.querySelector('.service-price').textContent,
+                service: this.dataset.service
+            };
+            
+            document.getElementById('selectedServiceName').textContent = selectedService.name;
+            document.getElementById('selectedServicePrice').textContent = selectedService.price;
+            nextStep.disabled = false;
+        });
+    });
+    
+    // Next step
+    nextStep.addEventListener('click', function() {
+        if (selectedService) {
+            showStep(2);
+        }
+    });
+    
+    // Back step
+    backStep.addEventListener('click', function() {
+        showStep(1);
+    });
+    
+    // Submit booking
+    submitBooking.addEventListener('click', function() {
+        const form = document.querySelector('.booking-form');
+        const formData = new FormData(form);
+        
+        // Validate required fields
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const date = formData.get('date');
+        const time = formData.get('time');
+        
+        if (!name || !email || !date || !time) {
+            alert('Bitte füllen Sie alle Pflichtfelder aus.');
+            return;
+        }
+        
+        // Show success step
+        document.getElementById('finalServiceName').textContent = selectedService.name;
+        document.getElementById('finalDate').textContent = date;
+        document.getElementById('finalTime').textContent = time;
+        
+        showStep(3);
+    });
+    
+    // Close buttons
+    closeBooking.addEventListener('click', closeBookingPopup);
+    cancelBooking.addEventListener('click', closeBookingPopup);
+    closeSuccess.addEventListener('click', closeBookingPopup);
+    
+    // Close on overlay click
+    bookingPopup.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeBookingPopup();
+        }
+    });
+    
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && bookingPopup.classList.contains('active')) {
+            closeBookingPopup();
+        }
+    });
+    
     // Buchungs-Buttons
     const bookingButtons = document.querySelectorAll('.btn-book, .btn-primary');
     bookingButtons.forEach(button => {
         if (button.textContent.includes('Buchen') || button.textContent.includes('Termin vereinbaren')) {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
-                // Hier könnte ein Buchungsformular geöffnet werden
-                alert('Buchungsformular wird geöffnet...');
+                openBookingPopup();
             });
         }
     });

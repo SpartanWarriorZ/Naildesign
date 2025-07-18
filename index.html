@@ -444,6 +444,186 @@
         </div>
     </footer>
 
+    <!-- Booking Popup -->
+    <div class="booking-popup" id="bookingPopup">
+        <div class="booking-overlay"></div>
+        <div class="booking-modal">
+            <div class="booking-header">
+                <h2>Termin vereinbaren</h2>
+                <button class="close-btn" id="closeBooking">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="booking-content">
+                <div class="booking-step active" id="step1">
+                    <h3>Wählen Sie Ihre Leistung</h3>
+                    <div class="service-selection">
+                        <div class="service-option" data-service="maniküre" data-price="25">
+                            <div class="service-icon">
+                                <i class="fas fa-hand-sparkles"></i>
+                            </div>
+                            <div class="service-info">
+                                <h4>Maniküre</h4>
+                                <p>Professionelle Handpflege mit Nagelformung</p>
+                                <span class="service-price">ab 25,00 €</span>
+                            </div>
+                            <div class="service-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="service-option" data-service="pediküre" data-price="35">
+                            <div class="service-icon">
+                                <i class="fas fa-spa"></i>
+                            </div>
+                            <div class="service-info">
+                                <h4>Pediküre</h4>
+                                <p>Entspannende Fußpflege und -massage</p>
+                                <span class="service-price">ab 35,00 €</span>
+                            </div>
+                            <div class="service-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="service-option" data-service="gel-modellage" data-price="45">
+                            <div class="service-icon">
+                                <i class="fas fa-gem"></i>
+                            </div>
+                            <div class="service-info">
+                                <h4>Gel-Modellage</h4>
+                                <p>Langlebige Gel-Nägel mit Verlängerung</p>
+                                <span class="service-price">ab 45,00 €</span>
+                            </div>
+                            <div class="service-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="service-option" data-service="shellac" data-price="30">
+                            <div class="service-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div class="service-info">
+                                <h4>Shellac</h4>
+                                <p>Lackierung mit langanhaltendem Glanz</p>
+                                <span class="service-price">ab 30,00 €</span>
+                            </div>
+                            <div class="service-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="service-option" data-service="nagelreparatur" data-price="15">
+                            <div class="service-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div class="service-info">
+                                <h4>Nagelreparatur</h4>
+                                <p>Professionelle Reparatur beschädigter Nägel</p>
+                                <span class="service-price">ab 15,00 €</span>
+                            </div>
+                            <div class="service-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="service-option" data-service="nageldesign" data-price="10">
+                            <div class="service-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="service-info">
+                                <h4>Nageldesign</h4>
+                                <p>Kreative Verzierungen und Muster</p>
+                                <span class="service-price">ab 10,00 €</span>
+                            </div>
+                            <div class="service-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="booking-actions">
+                        <button class="btn-secondary" id="cancelBooking">Abbrechen</button>
+                        <button class="btn-primary" id="nextStep" disabled>Weiter</button>
+                    </div>
+                </div>
+                
+                <div class="booking-step" id="step2">
+                    <h3>Ihre Kontaktdaten</h3>
+                    <form class="booking-form">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-Mail *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefon</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Gewünschtes Datum *</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Gewünschte Uhrzeit *</label>
+                            <select id="time" name="time" required>
+                                <option value="">Bitte wählen</option>
+                                <option value="09:00">09:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="12:00">12:00</option>
+                                <option value="13:00">13:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="17:00">17:00</option>
+                                <option value="18:00">18:00</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="notes">Anmerkungen</label>
+                            <textarea id="notes" name="notes" rows="3" placeholder="Besondere Wünsche oder Anmerkungen..."></textarea>
+                        </div>
+                    </form>
+                    <div class="selected-service-summary">
+                        <h4>Ausgewählte Leistung:</h4>
+                        <div class="selected-service">
+                            <span id="selectedServiceName">-</span>
+                            <span id="selectedServicePrice">-</span>
+                        </div>
+                    </div>
+                    <div class="booking-actions">
+                        <button class="btn-secondary" id="backStep">Zurück</button>
+                        <button class="btn-primary" id="submitBooking">Termin buchen</button>
+                    </div>
+                </div>
+                
+                <div class="booking-step" id="step3">
+                    <div class="success-message">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3>Termin erfolgreich gebucht!</h3>
+                        <p>Vielen Dank für Ihre Buchung. Wir haben Ihnen eine Bestätigung per E-Mail gesendet.</p>
+                        <div class="booking-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Leistung:</span>
+                                <span id="finalServiceName">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Datum:</span>
+                                <span id="finalDate">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Uhrzeit:</span>
+                                <span id="finalTime">-</span>
+                            </div>
+                        </div>
+                        <button class="btn-primary" id="closeSuccess">Schließen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Cookie Banner -->
     <div class="cookie-banner">
         <div class="cookie-content">
