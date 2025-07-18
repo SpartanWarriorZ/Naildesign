@@ -98,21 +98,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // FAQ Akkordeon
+    // FAQ Akkordeon mit sanfter Animation
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        
         question.addEventListener('click', function() {
             const isActive = item.classList.contains('active');
             
-            // Schließe alle anderen FAQ Items
+            // Schließe alle anderen FAQ Items mit Animation
             faqItems.forEach(otherItem => {
-                otherItem.classList.remove('active');
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
             });
             
-            // Öffne das geklickte Item, wenn es nicht bereits aktiv war
+            // Öffne/Schließe das geklickte Item mit Animation
             if (!isActive) {
-                item.classList.add('active');
+                // Kurze Verzögerung für sanftere Animation
+                setTimeout(() => {
+                    item.classList.add('active');
+                }, 50);
+            } else {
+                item.classList.remove('active');
             }
         });
     });
