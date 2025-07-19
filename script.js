@@ -529,20 +529,31 @@ function raf(time) {
       heroVideo.style.zIndex = '';
     }
   }
-  // Parallax-Effekt für das Nagelstudio-Bild im Über-uns-Bereich (zentriert und verstärkt auf Mobil)
+  // Parallax-Effekt für das Nagelstudio-Bild im Über-uns-Bereich (optimiert für Desktop und Mobil)
   const aboutImage = document.querySelector('.main-image img');
   if (aboutImage) {
     const rect = aboutImage.getBoundingClientRect();
     const windowHeight = window.innerHeight;
-    // Mittelpunkt des Viewports um 80px nach oben verschieben
-    const viewportCenter = (windowHeight / 2) - 900;
+    
+    // Desktop: Viewport-Zentrum für bessere Bildzentrierung
+    let viewportCenter;
+    if (window.innerWidth > 768) {
+      // Desktop: Viewport-Zentrum um 400px nach oben, damit das Bild nicht nach unten verschoben wird
+      viewportCenter = (windowHeight / 2) - 400;
+    } else {
+      // Mobil: Viewport-Zentrum um 900px nach oben (bestehende Einstellung)
+      viewportCenter = (windowHeight / 2) - 900;
+    }
+    
     const imageCenter = rect.top + rect.height / 2;
     const diff = imageCenter - viewportCenter;
     
-    // Verstärkter Parallax-Effekt auf Mobilgeräten
-    let parallaxStrength = 0.08;
-    if (window.innerWidth <= 768) {
-      parallaxStrength = 0.3; // Deutlich stärkerer Effekt auf Mobil
+    // Optimierte Parallax-Stärke für Desktop und Mobil
+    let parallaxStrength;
+    if (window.innerWidth > 768) {
+      parallaxStrength = 0.15; // Stärkerer Effekt auf Desktop für bessere Sichtbarkeit
+    } else {
+      parallaxStrength = 0.3; // Bestehender Effekt auf Mobil
     }
     
     // Zusätzlicher Effekt: Bild bewegt sich langsamer als der Scroll
