@@ -18,13 +18,13 @@
                 </a>
             </div>
             <div class="nav-menu">
+                <a href="#about" class="nav-link">Über uns</a>
                 <a href="#services" class="nav-link">Leistungen</a>
-                <a href="#prices" class="nav-link">Preise</a>
                 <a href="#map" class="nav-link">Standort</a>
                 <div class="nav-dropdown">
                     <button class="nav-link nav-dropdown-toggle">Mehr <i class="fas fa-chevron-down"></i></button>
                     <div class="nav-dropdown-menu">
-                        <a href="#about" class="nav-link">Über uns</a>
+                        <a href="#prices" class="nav-link">Preise</a>
                         <a href="#reviews" class="nav-link">Bewertungen</a>
                         <a href="#faq" class="nav-link">FAQ</a>
                         <a href="#contact" class="nav-link">Kontakt</a>
@@ -328,7 +328,7 @@
             </div>
             <div class="team-grid">
                 <div class="team-member">
-                    <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Agnes Pyka Rynkiewicz">
+                    <img src="Agnes-Pyka.jpg" alt="Agnes Pyka Rynkiewicz">
                     <h3>Agnes Pyka Rynkiewicz</h3>
                     <p>Inhaberin, Nageldesignerin</p>
                 </div>
@@ -712,12 +712,94 @@
     </div>
 
     <!-- Cookie Banner -->
-    <div class="cookie-banner">
+    <div class="cookie-banner" id="cookieBanner">
         <div class="cookie-content">
             <p>Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern.</p>
             <div class="cookie-buttons">
-                <button class="btn-secondary">Cookie-Einstellungen</button>
-                <button class="btn-primary">Alle akzeptieren</button>
+                <button class="btn-secondary" id="openCookieSettings">Cookie-Einstellungen</button>
+                <button class="btn-primary" id="acceptAllCookies">Alle akzeptieren</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div class="cookie-settings-modal" id="cookieSettingsModal">
+        <div class="cookie-settings-overlay"></div>
+        <div class="cookie-settings-content">
+            <div class="cookie-settings-header">
+                <h2>Cookie-Einstellungen</h2>
+                <button class="cookie-settings-close" id="closeCookieSettings">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cookie-settings-body">
+                <p class="cookie-intro">Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern. Sie können Ihre Einstellungen jederzeit ändern.</p>
+                
+                <div class="cookie-categories">
+                    <div class="cookie-category essential">
+                        <div class="category-header">
+                            <div class="category-info">
+                                <h3>Notwendige Cookies</h3>
+                                <p>Für die Grundfunktionen der Website erforderlich</p>
+                            </div>
+                            <div class="category-toggle">
+                                <input type="checkbox" id="essentialCookies" checked disabled>
+                                <label for="essentialCookies" class="toggle-label"></label>
+                            </div>
+                        </div>
+                        <div class="category-details">
+                            <p><strong>Immer aktiv</strong> - Diese Cookies sind für die Grundfunktionen der Website erforderlich und können nicht deaktiviert werden.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="cookie-category external">
+                        <div class="category-header">
+                            <div class="category-info">
+                                <h3>Externe Dienste</h3>
+                                <p>Für Terminbuchung, Navigation und Social Media</p>
+                            </div>
+                            <div class="category-toggle">
+                                <input type="checkbox" id="externalCookies">
+                                <label for="externalCookies" class="toggle-label"></label>
+                            </div>
+                        </div>
+                        <div class="category-details">
+                            <p><strong>Betroffene Dienste:</strong></p>
+                            <ul>
+                                <li><strong>Calendly:</strong> Terminbuchung und Kalenderintegration</li>
+                                <li><strong>Google Maps:</strong> Standortanzeige und Routenberechnung</li>
+                                <li><strong>Facebook/Instagram:</strong> Social Media Links</li>
+                            </ul>
+                            <p class="cookie-note">Diese Dienste werden nur geladen, wenn Sie diese Kategorie akzeptieren.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="cookie-category analytics">
+                        <div class="category-header">
+                            <div class="category-info">
+                                <h3>Analyse-Cookies</h3>
+                                <p>Helfen uns die Website zu verbessern</p>
+                            </div>
+                            <div class="category-toggle">
+                                <input type="checkbox" id="analyticsCookies">
+                                <label for="analyticsCookies" class="toggle-label"></label>
+                            </div>
+                        </div>
+                        <div class="category-details">
+                            <p><strong>Betroffene Dienste:</strong></p>
+                            <ul>
+                                <li><strong>Google Analytics:</strong> Website-Nutzung und Performance</li>
+                                <li><strong>Heatmaps:</strong> Benutzerverhalten und Klick-Analyse</li>
+                            </ul>
+                            <p class="cookie-note">Diese Daten helfen uns, die Website zu optimieren.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cookie-settings-actions">
+                    <button class="btn-secondary" id="saveCookiePreferences">Einstellungen speichern</button>
+                    <button class="btn-primary" id="acceptAllCookiesModal">Alle akzeptieren</button>
+                </div>
             </div>
         </div>
     </div>

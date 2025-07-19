@@ -186,16 +186,163 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Cookie Banner
-    const cookieBanner = document.querySelector('.cookie-banner');
-    const acceptAllBtn = document.querySelector('.cookie-banner .btn-primary');
-    const cookieSettingsBtn = document.querySelector('.cookie-banner .btn-secondary');
-
-    if (acceptAllBtn) {
-        acceptAllBtn.addEventListener('click', function() {
+    // Erweiterte Cookie-Management Funktionalität
+    const cookieBanner = document.getElementById('cookieBanner');
+    const cookieSettingsModal = document.getElementById('cookieSettingsModal');
+    const openCookieSettings = document.getElementById('openCookieSettings');
+    const closeCookieSettings = document.getElementById('closeCookieSettings');
+    const acceptAllCookies = document.getElementById('acceptAllCookies');
+    const acceptAllCookiesModal = document.getElementById('acceptAllCookiesModal');
+    const saveCookiePreferences = document.getElementById('saveCookiePreferences');
+    
+    // Cookie-Kategorien
+    const externalCookies = document.getElementById('externalCookies');
+    const analyticsCookies = document.getElementById('analyticsCookies');
+    
+    // Cookie-Einstellungen laden
+    function loadCookiePreferences() {
+        const preferences = JSON.parse(localStorage.getItem('cookiePreferences') || '{}');
+        
+        if (preferences.external !== undefined) {
+            externalCookies.checked = preferences.external;
+        }
+        if (preferences.analytics !== undefined) {
+            analyticsCookies.checked = preferences.analytics;
+        }
+        
+        return preferences;
+    }
+    
+    // Cookie-Einstellungen speichern
+    function saveCookiePreferencesFunc() {
+        const preferences = {
+            essential: true, // Immer aktiv
+            external: externalCookies.checked,
+            analytics: analyticsCookies.checked
+        };
+        
+        localStorage.setItem('cookiePreferences', JSON.stringify(preferences));
+        localStorage.setItem('cookiesAccepted', 'true');
+        
+        // Externe Dienste entsprechend laden/entladen
+        if (preferences.external) {
+            loadExternalServices();
+        }
+        
+        // Modal schließen
+        closeCookieSettingsModal();
+        
+        // Banner ausblenden
+        if (cookieBanner) {
             cookieBanner.style.display = 'none';
+        }
+        
+        console.log('Cookie-Einstellungen gespeichert:', preferences);
+    }
+    
+    // Externe Dienste laden
+    function loadExternalServices() {
+        console.log('Lade externe Dienste...');
+        // Hier können externe Dienste wie Calendly, Maps etc. geladen werden
+        // Für jetzt nur ein Log
+    }
+    
+    // Cookie-Settings Modal öffnen
+    function openCookieSettingsModal() {
+        if (cookieSettingsModal) {
+            cookieSettingsModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            loadCookiePreferences();
+        }
+    }
+    
+    // Cookie-Settings Modal schließen
+    function closeCookieSettingsModal() {
+        if (cookieSettingsModal) {
+            cookieSettingsModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+    
+    // Alle Cookies akzeptieren
+    function acceptAllCookiesFunc() {
+        const preferences = {
+            essential: true,
+            external: true,
+            analytics: true
+        };
+        
+        localStorage.setItem('cookiePreferences', JSON.stringify(preferences));
             localStorage.setItem('cookiesAccepted', 'true');
+        
+        // Externe Dienste laden
+        loadExternalServices();
+        
+        // Banner ausblenden
+        if (cookieBanner) {
+            cookieBanner.style.display = 'none';
+        }
+        
+        // Modal schließen falls offen
+        closeCookieSettingsModal();
+        
+        console.log('Alle Cookies akzeptiert');
+    }
+    
+    // Event Listeners
+    if (openCookieSettings) {
+        openCookieSettings.addEventListener('click', openCookieSettingsModal);
+    }
+    
+    if (closeCookieSettings) {
+        closeCookieSettings.addEventListener('click', closeCookieSettingsModal);
+    }
+    
+    if (acceptAllCookies) {
+        acceptAllCookies.addEventListener('click', acceptAllCookiesFunc);
+    }
+    
+    if (acceptAllCookiesModal) {
+        acceptAllCookiesModal.addEventListener('click', acceptAllCookiesFunc);
+    }
+    
+    if (saveCookiePreferences) {
+        saveCookiePreferences.addEventListener('click', saveCookiePreferencesFunc);
+    }
+    
+    // Modal schließen bei Overlay-Klick
+    if (cookieSettingsModal) {
+        cookieSettingsModal.addEventListener('click', function(e) {
+            if (e.target === cookieSettingsModal) {
+                closeCookieSettingsModal();
+            }
         });
+    }
+    
+    // Modal schließen bei Escape-Taste
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && cookieSettingsModal && cookieSettingsModal.classList.contains('active')) {
+            closeCookieSettingsModal();
+        }
+    });
+    
+    // Cookie-Banner anzeigen/verstecken basierend auf gespeicherten Einstellungen
+    const savedPreferences = JSON.parse(localStorage.getItem('cookiePreferences') || '{}');
+    if (Object.keys(savedPreferences).length > 0 || localStorage.getItem('cookiesAccepted') === 'true') {
+        // Cookies wurden bereits verwaltet
+        if (cookieBanner) {
+            cookieBanner.style.display = 'none';
+        }
+        
+        // Externe Dienste laden falls akzeptiert
+        if (savedPreferences.external) {
+            loadExternalServices();
+        }
+    } else {
+        // Cookie-Banner anzeigen
+        if (cookieBanner) {
+            cookieBanner.style.display = 'block';
+        }
     }
 
     // Team Modal Funktionalität
@@ -540,6 +687,19 @@ document.addEventListener('DOMContentLoaded', function() {
                             setTimeout(() => {
                                 toggleReviewsBtn.textContent = 'Mehr anzeigen';
                                 reviewsExpanded = false;
+                                
+                                // Mobile: Automatisch zum Anfang der Bewertungen scrollen
+                                if (window.innerWidth <= 768) {
+                                    const reviewsSection = document.getElementById('reviews');
+                                    if (reviewsSection) {
+                                        // Sanftere Scroll-Animation mit Easing
+                                        lenis.scrollTo(reviewsSection, { 
+                                            offset: -20,
+                                            duration: 2.0,
+                                            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) // Smooth easing
+                                        });
+                                    }
+                                }
                             }, 600 + 100); // Verzögerung nach der letzten Animation
                         }
                     }, reverseIndex * 80); // Umgekehrte Verzögerung für rückwärts Animation
@@ -548,17 +708,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    if (cookieSettingsBtn) {
-        cookieSettingsBtn.addEventListener('click', function() {
-            // Hier könnte eine Cookie-Einstellungsseite geöffnet werden
-            alert('Cookie-Einstellungen werden geöffnet...');
-        });
-    }
 
-    // Verstecke Cookie Banner wenn bereits akzeptiert
-    if (localStorage.getItem('cookiesAccepted') === 'true') {
-        cookieBanner.style.display = 'none';
-    }
 
     // Smooth Scroll für "Mehr anzeigen" Buttons (außer dem Reviews-Button)
     const showMoreButtons = document.querySelectorAll('.btn-secondary');
@@ -1040,4 +1190,30 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 10);
 
     window.addEventListener('scroll', optimizedScrollHandler); 
+
+    // Route berechnen Funktion mit intelligenter Erkennung
+    function calculateRoute() {
+        const destination = "Hardenbergstraße 28, 46236 Bottrop";
+        
+        // Erkennung des Betriebssystems
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        const isAndroid = /Android/.test(navigator.userAgent);
+        
+        if (isIOS) {
+            // Apple Maps für iOS
+            window.open(`http://maps.apple.com/?daddr=${encodeURIComponent(destination)}`, '_blank');
+        } else {
+            // Google Maps für alle anderen
+            window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}`, '_blank');
+        }
+    }
+
+    // Event Listener für Route berechnen Button
+    const routeButton = document.querySelector('.map-info .btn-primary');
+    if (routeButton) {
+        routeButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            calculateRoute();
+        });
+    }
 }); 
