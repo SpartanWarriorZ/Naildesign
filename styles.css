@@ -1252,6 +1252,30 @@ body {
     font-weight: 700;
 }
 
+/* Sehr kleine Geräte (320px und weniger) - Sterne anpassen */
+@media (max-width: 320px) {
+    .stars-large {
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 0.2rem;
+    }
+    
+    .stars-large i {
+        flex-shrink: 0;
+    }
+    
+    .rating-text {
+        font-size: 1.5rem;
+    }
+    
+    .rating-content {
+        max-width: 100%;
+        padding: 0 0.5rem;
+    }
+}
+
 .rating-bars {
     margin-bottom: 3rem;
 }
@@ -2525,6 +2549,20 @@ body {
     }
     .hero-subtitle {
         margin-top: -2rem;
+    }
+}
+
+/* Sehr kleine Geräte (375px und weniger) */
+@media (max-width: 375px) {
+    .hero-logo {
+        width: 90vw;
+        max-width: 350px;
+        height: auto;
+        display: block;
+        margin: 1rem auto 0.2rem auto;
+        border: none !important;
+        box-shadow: none !important;
+        filter: none !important;
     }
 } 
 
