@@ -1,5 +1,6 @@
 // Language Switcher
 let currentLanguage = 'de';
+let currentTheme = 'dark'; // 'dark' oder 'light'
 
 const translations = {
     de: {
@@ -271,19 +272,52 @@ const translations = {
 function switchLanguage() {
     currentLanguage = currentLanguage === 'de' ? 'en' : 'de';
     
-    // Update language selector
+    // Update language selectors (desktop and mobile)
     const languageSelector = document.getElementById('languageSelector');
+    const mobileLanguageSelector = document.getElementById('mobileLanguageSelector');
     const currentLanguageSpan = document.getElementById('currentLanguage');
-    const flagIcon = languageSelector.querySelector('.flag-icon');
+    const mobileCurrentLanguageSpan = document.getElementById('mobileCurrentLanguage');
     
     if (currentLanguage === 'en') {
-        flagIcon.src = 'https://flagcdn.com/gb.svg';
-        flagIcon.alt = 'English';
-        currentLanguageSpan.textContent = 'EN';
+        // Update desktop
+        if (languageSelector) {
+            const flagIcon = languageSelector.querySelector('.flag-icon');
+            flagIcon.src = 'https://flagcdn.com/gb.svg';
+            flagIcon.alt = 'English';
+        }
+        if (currentLanguageSpan) {
+            currentLanguageSpan.textContent = 'EN';
+        }
+        
+        // Update mobile
+        if (mobileLanguageSelector) {
+            const mobileFlagIcon = mobileLanguageSelector.querySelector('.flag-icon');
+            mobileFlagIcon.src = 'https://flagcdn.com/gb.svg';
+            mobileFlagIcon.alt = 'English';
+        }
+        if (mobileCurrentLanguageSpan) {
+            mobileCurrentLanguageSpan.textContent = 'EN';
+        }
     } else {
-        flagIcon.src = 'https://flagcdn.com/de.svg';
-        flagIcon.alt = 'Deutsch';
-        currentLanguageSpan.textContent = 'DE';
+        // Update desktop
+        if (languageSelector) {
+            const flagIcon = languageSelector.querySelector('.flag-icon');
+            flagIcon.src = 'https://flagcdn.com/de.svg';
+            flagIcon.alt = 'Deutsch';
+        }
+        if (currentLanguageSpan) {
+            currentLanguageSpan.textContent = 'DE';
+        }
+        
+        // Update mobile
+        if (mobileLanguageSelector) {
+            const mobileFlagIcon = mobileLanguageSelector.querySelector('.flag-icon');
+            mobileFlagIcon.src = 'https://flagcdn.com/de.svg';
+            mobileFlagIcon.alt = 'Deutsch';
+        }
+        if (mobileCurrentLanguageSpan) {
+            mobileCurrentLanguageSpan.textContent = 'DE';
+        }
     }
     
     // Update all translatable elements
@@ -341,12 +375,99 @@ function updatePageLanguage() {
     });
 }
 
+// Theme Toggle Function
+function toggleTheme() {
+    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    // Update theme on document
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    
+    // Update theme icons (desktop and mobile)
+    const themeIcon = document.getElementById('themeIcon');
+    const mobileThemeIcon = document.getElementById('mobileThemeIcon');
+    
+    if (themeIcon) {
+        if (currentTheme === 'light') {
+            themeIcon.className = 'fas fa-sun';
+        } else {
+            themeIcon.className = 'fas fa-moon';
+        }
+    }
+    
+    if (mobileThemeIcon) {
+        if (currentTheme === 'light') {
+            mobileThemeIcon.className = 'fas fa-sun';
+        } else {
+            mobileThemeIcon.className = 'fas fa-moon';
+        }
+    }
+    
+    // Save theme preference
+    localStorage.setItem('theme', currentTheme);
+    
+    console.log('Theme switched to:', currentTheme);
+}
+
+// Initialize theme
+function initializeTheme() {
+    // Load saved theme from localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        currentTheme = savedTheme;
+    }
+    
+    // Apply theme
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    
+    // Update theme icons (desktop and mobile)
+    const themeIcon = document.getElementById('themeIcon');
+    const mobileThemeIcon = document.getElementById('mobileThemeIcon');
+    
+    if (themeIcon) {
+        if (currentTheme === 'light') {
+            themeIcon.className = 'fas fa-sun';
+        } else {
+            themeIcon.className = 'fas fa-moon';
+        }
+    }
+    
+    if (mobileThemeIcon) {
+        if (currentTheme === 'light') {
+            mobileThemeIcon.className = 'fas fa-sun';
+        } else {
+            mobileThemeIcon.className = 'fas fa-moon';
+        }
+    }
+}
+
 // Initialize language switcher
 document.addEventListener('DOMContentLoaded', function() {
+    // Desktop language selector
     const languageSelector = document.getElementById('languageSelector');
     if (languageSelector) {
         languageSelector.addEventListener('click', switchLanguage);
         languageSelector.style.cursor = 'pointer';
+    }
+    
+    // Mobile language selector
+    const mobileLanguageSelector = document.getElementById('mobileLanguageSelector');
+    if (mobileLanguageSelector) {
+        mobileLanguageSelector.addEventListener('click', switchLanguage);
+        mobileLanguageSelector.style.cursor = 'pointer';
+    }
+    
+    // Initialize theme
+    initializeTheme();
+    
+    // Theme toggle event listeners (desktop and mobile)
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
+    
+    const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+    if (mobileThemeToggle) {
+        mobileThemeToggle.addEventListener('click', toggleTheme);
     }
 });
 
@@ -529,12 +650,20 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
-        // Menü schließt sich beim Klick auf einen Link
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function() {
+        // Menü schließt sich beim Klick auf einen Link oder die Settings
+        navMenu.querySelectorAll('a, .mobile-theme-toggle, .mobile-language-selector').forEach(element => {
+            element.addEventListener('click', function() {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
             });
+        });
+        
+        // Menü schließt sich beim Klick außerhalb
+        document.addEventListener('click', function(e) {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
         });
     }
 
