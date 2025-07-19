@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Schließe alle anderen FAQ Items mit Animation
             faqItems.forEach(otherItem => {
                 if (otherItem !== item) {
-                    otherItem.classList.remove('active');
+                otherItem.classList.remove('active');
                 }
             });
             
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!isActive) {
                 // Kurze Verzögerung für sanftere Animation
                 setTimeout(() => {
-                    item.classList.add('active');
+                item.classList.add('active');
                 }, 50);
             } else {
                 item.classList.remove('active');
@@ -198,6 +198,356 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Team Modal Funktionalität
+    const teamModal = document.getElementById('teamModal');
+    const closeTeamModal = document.getElementById('closeTeamModal');
+    const teamModalImage = document.getElementById('teamModalImage');
+    const teamModalName = document.getElementById('teamModalName');
+    const teamModalPosition = document.getElementById('teamModalPosition');
+    const teamMemberImages = document.querySelectorAll('.team-member img');
+
+    // Team Modal öffnen
+    function openTeamModal(imageSrc, name, position) {
+        teamModalImage.src = imageSrc;
+        teamModalImage.alt = name;
+        teamModalName.textContent = name;
+        teamModalPosition.textContent = position;
+        teamModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Team Modal schließen
+    function closeTeamModalFunc() {
+        teamModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Event Listeners für Team Member Bilder
+    teamMemberImages.forEach(member => {
+        member.addEventListener('click', function() {
+            const name = this.alt;
+            const imageSrc = this.src;
+            const position = this.closest('.team-member').querySelector('p').textContent;
+            openTeamModal(imageSrc, name, position);
+        });
+    });
+
+    // Modal schließen
+    if (closeTeamModal) {
+        closeTeamModal.addEventListener('click', closeTeamModalFunc);
+    }
+
+    // Modal schließen bei Overlay-Klick
+    if (teamModal) {
+        teamModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeTeamModalFunc();
+            }
+        });
+    }
+
+    // Modal schließen bei Escape-Taste
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && teamModal && teamModal.classList.contains('active')) {
+            closeTeamModalFunc();
+        }
+    });
+
+    // Rating Bars Animation bei Stern-Hover
+    const starsLarge = document.querySelector('.stars-large');
+    const ratingBars = document.querySelector('.rating-bars');
+    
+    if (starsLarge && ratingBars) {
+        starsLarge.addEventListener('mouseenter', function() {
+            ratingBars.classList.add('stars-hovered');
+        });
+        
+        starsLarge.addEventListener('mouseleave', function() {
+            ratingBars.classList.remove('stars-hovered');
+        });
+    }
+
+    // Review Form Modal Funktionalität
+    const reviewFormModal = document.getElementById('reviewFormModal');
+    const openReviewForm = document.getElementById('openReviewForm');
+    const closeReviewForm = document.getElementById('closeReviewForm');
+    const cancelReview = document.getElementById('cancelReview');
+    const reviewForm = document.getElementById('reviewForm');
+    const starRating = document.querySelector('.star-rating');
+    const ratingText = document.querySelector('.rating-text');
+    let selectedRating = 0;
+
+    // Review Form öffnen
+    function openReviewFormFunc() {
+        reviewFormModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        resetReviewForm();
+    }
+
+    // Review Form schließen
+    function closeReviewFormFunc() {
+        reviewFormModal.classList.remove('active');
+        document.body.style.overflow = '';
+        resetReviewForm();
+    }
+
+    // Review Form zurücksetzen
+    function resetReviewForm() {
+        selectedRating = 0;
+        reviewForm.reset();
+        updateStarDisplay();
+        updateRatingText();
+    }
+
+    // Sterne aktualisieren
+    function updateStarDisplay() {
+        const stars = starRating.querySelectorAll('i');
+        stars.forEach((star, index) => {
+            if (index < selectedRating) {
+                star.classList.remove('far');
+                star.classList.add('fas');
+                star.classList.add('active');
+            } else {
+                star.classList.remove('fas');
+                star.classList.remove('active');
+                star.classList.add('far');
+            }
+        });
+    }
+
+    // Rating Text aktualisieren
+    function updateRatingText() {
+        const texts = [
+            'Klicken Sie auf die Sterne',
+            'Sehr schlecht',
+            'Schlecht',
+            'Okay',
+            'Gut',
+            'Sehr gut'
+        ];
+        ratingText.textContent = texts[selectedRating];
+    }
+
+    // Event Listeners für Sterne
+    if (starRating) {
+        starRating.addEventListener('click', function(e) {
+            if (e.target.tagName === 'I') {
+                selectedRating = parseInt(e.target.dataset.rating);
+                updateStarDisplay();
+                updateRatingText();
+            }
+        });
+
+        // Hover-Effekt für Sterne
+        starRating.addEventListener('mouseover', function(e) {
+            if (e.target.tagName === 'I') {
+                const hoverRating = parseInt(e.target.dataset.rating);
+                const stars = starRating.querySelectorAll('i');
+                stars.forEach((star, index) => {
+                    if (index < hoverRating) {
+                        star.classList.remove('far');
+                        star.classList.add('fas');
+                    } else {
+                        star.classList.remove('fas');
+                        star.classList.add('far');
+                    }
+                });
+            }
+        });
+
+        starRating.addEventListener('mouseout', function() {
+            updateStarDisplay();
+        });
+    }
+
+    // Event Listeners für Modal
+    if (openReviewForm) {
+        openReviewForm.addEventListener('click', openReviewFormFunc);
+    }
+
+    if (closeReviewForm) {
+        closeReviewForm.addEventListener('click', closeReviewFormFunc);
+    }
+
+    if (cancelReview) {
+        cancelReview.addEventListener('click', closeReviewFormFunc);
+    }
+
+    // Modal schließen bei Overlay-Klick
+    if (reviewFormModal) {
+        reviewFormModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeReviewFormFunc();
+            }
+        });
+    }
+
+    // Form Submit
+    if (reviewForm) {
+        reviewForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (selectedRating === 0) {
+                alert('Bitte wählen Sie eine Bewertung aus.');
+                return;
+            }
+
+            // Bewertung in LocalStorage speichern
+            const newReview = {
+                id: Date.now(),
+                name: document.getElementById('reviewName').value,
+                email: document.getElementById('reviewEmail').value,
+                rating: selectedRating,
+                title: document.getElementById('reviewTitle').value || 'Bewertung',
+                text: document.getElementById('reviewText').value,
+                service: document.getElementById('reviewService').value || 'Allgemein',
+                date: new Date().toLocaleDateString('de-DE'),
+                avatar: `https://images.unsplash.com/photo-${Math.floor(Math.random() * 1000000)}?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80`
+            };
+
+            // Bestehende Bewertungen laden
+            let reviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
+            
+            // Neue Bewertung hinzufügen
+            reviews.unshift(newReview); // Am Anfang einfügen
+            
+            // In LocalStorage speichern
+            localStorage.setItem('userReviews', JSON.stringify(reviews));
+            
+            // Bewertungen auf der Seite aktualisieren
+            updateReviewsDisplay();
+            
+            alert('Vielen Dank für Ihre Bewertung! Sie wurde erfolgreich gespeichert.');
+            closeReviewFormFunc();
+        });
+    }
+
+    // Bewertungen aus LocalStorage laden und anzeigen
+    function loadUserReviews() {
+        const reviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
+        return reviews;
+    }
+
+    // Bewertungen auf der Seite anzeigen
+    function updateReviewsDisplay() {
+        const userReviews = loadUserReviews();
+        const reviewsGrid = document.getElementById('reviewsGrid');
+        
+        if (!reviewsGrid || userReviews.length === 0) return;
+
+        // Bestehende User-Reviews entfernen (falls vorhanden)
+        const existingUserReviews = reviewsGrid.querySelectorAll('.user-review');
+        existingUserReviews.forEach(review => review.remove());
+
+        // Neue User-Reviews hinzufügen
+        userReviews.forEach(review => {
+            const reviewCard = createReviewCard(review);
+            reviewsGrid.insertBefore(reviewCard, reviewsGrid.firstChild);
+        });
+    }
+
+    // Review Card erstellen
+    function createReviewCard(review) {
+        const reviewCard = document.createElement('div');
+        reviewCard.className = 'review-card user-review';
+        
+        const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+        
+        reviewCard.innerHTML = `
+            <div class="review-header">
+                <img src="${review.avatar}" alt="${review.name}" class="reviewer-avatar">
+                <div class="reviewer-info">
+                    <h4>${review.name}</h4>
+                    <div class="stars">
+                        ${review.rating >= 1 ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>'}
+                        ${review.rating >= 2 ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>'}
+                        ${review.rating >= 3 ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>'}
+                        ${review.rating >= 4 ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>'}
+                        ${review.rating >= 5 ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>'}
+                    </div>
+                    <span class="review-date">vor ${getTimeAgo(review.id)}</span>
+                </div>
+            </div>
+            <p class="review-text">${review.text}</p>
+        `;
+        
+        return reviewCard;
+    }
+
+    // Zeit seit Bewertung berechnen
+    function getTimeAgo(timestamp) {
+        const now = Date.now();
+        const diff = now - timestamp;
+        const minutes = Math.floor(diff / 60000);
+        const hours = Math.floor(diff / 3600000);
+        const days = Math.floor(diff / 86400000);
+        
+        if (minutes < 1) return 'wenigen Sekunden';
+        if (minutes < 60) return `${minutes} Minuten`;
+        if (hours < 24) return `${hours} Stunden`;
+        if (days < 7) return `${days} Tagen`;
+        return `${Math.floor(days / 7)} Wochen`;
+    }
+
+    // Bewertungen beim Laden der Seite anzeigen
+    document.addEventListener('DOMContentLoaded', function() {
+        updateReviewsDisplay();
+    });
+
+    // Review Toggle Funktionalität
+    const toggleReviewsBtn = document.getElementById('toggleReviews');
+    const reviewsGrid = document.getElementById('reviewsGrid');
+    const hiddenReviews = document.querySelectorAll('.review-hidden');
+    let reviewsExpanded = false;
+
+    if (toggleReviewsBtn && reviewsGrid) {
+        toggleReviewsBtn.addEventListener('click', function() {
+            if (!reviewsExpanded) {
+                // Bewertungen erweitern mit cooler Animation
+                hiddenReviews.forEach((review, index) => {
+                    setTimeout(() => {
+                        review.classList.remove('review-hidden');
+                        review.classList.add('review-visible');
+                        
+                        // Button-Text erst nach der letzten Animation ändern
+                        if (index === hiddenReviews.length - 1) {
+                            setTimeout(() => {
+                                toggleReviewsBtn.textContent = 'Weniger anzeigen';
+                                reviewsExpanded = true;
+                            }, 200); // Verzögerung nach der letzten Animation
+                        }
+                    }, index * 150); // Gestaffelte Animation mit mehr Verzögerung
+                });
+            } else {
+                // Bewertungen minimieren mit cooler Schließ-Animation (rückwärts)
+                const totalReviews = hiddenReviews.length;
+                hiddenReviews.forEach((review, index) => {
+                    // Berechne die umgekehrte Position für rückwärts Animation
+                    const reverseIndex = totalReviews - 1 - index;
+                    
+                    setTimeout(() => {
+                        // Erst die Schließ-Animation starten
+                        review.classList.add('review-sliding-out');
+                        
+                        // Nach der Animation die Klassen wechseln
+                        setTimeout(() => {
+                            review.classList.remove('review-visible', 'review-sliding-out');
+                            review.classList.add('review-hidden');
+                        }, 600); // Warte bis Animation fertig ist
+                        
+                        // Button-Text erst nach der ersten Animation ändern (index 0 ist jetzt die letzte)
+                        if (index === 0) {
+                            setTimeout(() => {
+                                toggleReviewsBtn.textContent = 'Mehr anzeigen';
+                                reviewsExpanded = false;
+                            }, 600 + 100); // Verzögerung nach der letzten Animation
+                        }
+                    }, reverseIndex * 80); // Umgekehrte Verzögerung für rückwärts Animation
+                });
+            }
+        });
+    }
+
     if (cookieSettingsBtn) {
         cookieSettingsBtn.addEventListener('click', function() {
             // Hier könnte eine Cookie-Einstellungsseite geöffnet werden
@@ -210,10 +560,10 @@ document.addEventListener('DOMContentLoaded', function() {
         cookieBanner.style.display = 'none';
     }
 
-    // Smooth Scroll für "Mehr anzeigen" Buttons
+    // Smooth Scroll für "Mehr anzeigen" Buttons (außer dem Reviews-Button)
     const showMoreButtons = document.querySelectorAll('.btn-secondary');
     showMoreButtons.forEach(button => {
-        if (button.textContent.includes('Mehr anzeigen')) {
+        if (button.textContent.includes('Mehr anzeigen') && button.id !== 'toggleReviews') {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 // Hier könnte mehr Content geladen werden

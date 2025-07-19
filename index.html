@@ -176,7 +176,7 @@
             <div class="section-header">
                 <h2>Bewertungen</h2>
             </div>
-            <div class="reviews-grid">
+            <div class="reviews-grid" id="reviewsGrid">
                 <div class="review-card">
                     <div class="review-header">
                         <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Sarah M." class="reviewer-avatar">
@@ -228,8 +228,95 @@
                     </div>
                     <p class="review-text">Sehr professionell und sauber. Die Maniküre war entspannend und das Ergebnis ist wunderschön.</p>
                 </div>
+                
+                <!-- Zusätzliche Bewertungen (anfangs versteckt) -->
+                <div class="review-card review-hidden">
+                    <div class="review-header">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Sandra K." class="reviewer-avatar">
+                        <div class="reviewer-info">
+                            <h4>Sandra K.</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="review-date">vor 2 Monaten</span>
+                        </div>
+                    </div>
+                    <p class="review-text">Wunderschönes Nageldesign! Die Künstlerin hat genau das umgesetzt, was ich mir vorgestellt habe. Sehr kreativ und talentiert.</p>
+                </div>
+                <div class="review-card review-hidden">
+                    <div class="review-header">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Julia W." class="reviewer-avatar">
+                        <div class="reviewer-info">
+                            <h4>Julia W.</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="review-date">vor 1 Monat</span>
+                        </div>
+                    </div>
+                    <p class="review-text">Absolut begeistert! Meine Gel-Nägel halten seit 3 Wochen perfekt. Das Studio ist sehr sauber und die Atmosphäre ist entspannend.</p>
+                </div>
+                <div class="review-card review-hidden">
+                    <div class="review-header">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Petra M." class="reviewer-avatar">
+                        <div class="reviewer-info">
+                            <h4>Petra M.</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="review-date">vor 1 Monat</span>
+                        </div>
+                    </div>
+                    <p class="review-text">Die Pediküre war okay, aber ich hatte mir mehr Zeit für die Massage gewünscht. Preis-Leistung ist in Ordnung.</p>
+                </div>
+                <div class="review-card review-hidden">
+                    <div class="review-header">
+                        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Claudia R." class="reviewer-avatar">
+                        <div class="reviewer-info">
+                            <h4>Claudia R.</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="review-date">vor 6 Wochen</span>
+                        </div>
+                    </div>
+                    <p class="review-text">Sehr zuverlässig und professionell! Ich komme seit einem Jahr regelmäßig und bin immer zufrieden. Die Shellac-Lackierung hält perfekt.</p>
+                </div>
+                <div class="review-card review-hidden">
+                    <div class="review-header">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Anna B." class="reviewer-avatar">
+                        <div class="reviewer-info">
+                            <h4>Anna B.</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="review-date">vor 3 Wochen</span>
+                        </div>
+                    </div>
+                    <p class="review-text">Gute Qualität, aber etwas teuer. Die Nageldesignerin war sehr freundlich und das Ergebnis war schön.</p>
+                </div>
             </div>
-            <button class="btn-secondary">Mehr anzeigen</button>
+            <button class="btn-secondary" id="toggleReviews">Mehr anzeigen</button>
         </div>
     </section>
 
@@ -246,8 +333,8 @@
                     <p>Inhaberin, Nageldesignerin</p>
                 </div>
                 <div class="team-member">
-                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Anna Weber">
-                    <h3>Anna Weber</h3>
+                    <img src="https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Alina Rynkiewicz">
+                    <h3>Alina Rynkiewicz</h3>
                     <p>Nageldesignerin</p>
                 </div>
             </div>
@@ -309,7 +396,7 @@
                     </div>
                 </div>
                 <div class="rating-buttons">
-                    <button class="btn-primary">Bewertung schreiben</button>
+                    <button class="btn-primary" id="openReviewForm">Bewertung schreiben</button>
                     <button class="btn-secondary">Alle Bewertungen anzeigen</button>
                 </div>
             </div>
@@ -428,8 +515,8 @@
                 <div class="footer-section">
                     <h4>Folgen Sie uns</h4>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/aga_pyka?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/Aga32" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-facebook"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
@@ -666,6 +753,88 @@
                     </iframe>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Team Member Modal -->
+    <div class="team-modal" id="teamModal">
+        <div class="team-modal-overlay"></div>
+        <div class="team-modal-content">
+            <button class="team-modal-close" id="closeTeamModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="team-modal-image-container">
+                <img id="teamModalImage" src="" alt="Team Member" class="team-modal-image">
+            </div>
+            <div class="team-modal-info">
+                <h3 id="teamModalName"></h3>
+                <p id="teamModalPosition"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Form Modal -->
+    <div class="review-form-modal" id="reviewFormModal">
+        <div class="review-form-overlay"></div>
+        <div class="review-form-content">
+            <button class="review-form-close" id="closeReviewForm">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="review-form-header">
+                <h2>Bewertung schreiben</h2>
+                <p>Teilen Sie Ihre Erfahrung mit uns</p>
+            </div>
+            <form class="review-form" id="reviewForm">
+                <div class="form-group">
+                    <label for="reviewName">Ihr Name *</label>
+                    <input type="text" id="reviewName" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reviewEmail">E-Mail *</label>
+                    <input type="email" id="reviewEmail" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Ihre Bewertung *</label>
+                    <div class="star-rating">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                    </div>
+                    <span class="rating-text">Klicken Sie auf die Sterne</span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reviewTitle">Titel Ihrer Bewertung</label>
+                    <input type="text" id="reviewTitle" name="title" placeholder="z.B. 'Fantastischer Service!'">
+                </div>
+                
+                <div class="form-group">
+                    <label for="reviewText">Ihre Bewertung *</label>
+                    <textarea id="reviewText" name="text" rows="4" placeholder="Beschreiben Sie Ihre Erfahrung..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reviewService">In Anspruch genommene Leistung</label>
+                    <select id="reviewService" name="service">
+                        <option value="">Bitte wählen</option>
+                        <option value="manikure">Maniküre</option>
+                        <option value="pedikure">Pediküre</option>
+                        <option value="gel-modellage">Gel-Modellage</option>
+                        <option value="shellac">Shellac</option>
+                        <option value="nagelreparatur">Nagelreparatur</option>
+                        <option value="nageldesign">Nageldesign</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelReview">Abbrechen</button>
+                    <button type="submit" class="btn-primary">Bewertung absenden</button>
+                </div>
+            </form>
         </div>
     </div>
 

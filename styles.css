@@ -667,6 +667,108 @@ body {
     line-height: 1.6;
 }
 
+/* Review Animation Styles */
+.review-hidden {
+    display: none;
+    opacity: 0;
+    transform: translateY(50px) scale(0.8) rotateX(-15deg);
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: blur(2px);
+}
+
+.review-visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0deg);
+    filter: blur(0px);
+}
+
+.reviews-grid {
+    transition: all 0.5s ease;
+    perspective: 1000px;
+}
+
+.review-card {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.review-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(255, 105, 180, 0.2);
+}
+
+#toggleReviews {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+}
+
+#toggleReviews::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 105, 180, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+#toggleReviews:hover::before {
+    left: 100%;
+}
+
+#toggleReviews:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
+    background: linear-gradient(135deg, #ff69b4, #ff8fab);
+}
+
+/* Staggered Animation für Reviews */
+@keyframes reviewSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(60px) scale(0.7) rotateX(-20deg);
+        filter: blur(3px);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(20px) scale(0.9) rotateX(-10deg);
+        filter: blur(1px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotateX(0deg);
+        filter: blur(0px);
+    }
+}
+
+@keyframes reviewSlideOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotateX(0deg);
+        filter: blur(0px);
+    }
+    50% {
+        opacity: 0.3;
+        transform: translateY(-20px) scale(0.9) rotateX(10deg);
+        filter: blur(1px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-60px) scale(0.7) rotateX(20deg);
+        filter: blur(3px);
+    }
+}
+
+.review-visible {
+    animation: reviewSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.review-sliding-out {
+    animation: reviewSlideOut 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
 /* Team Section */
 .team {
     padding: 100px 0;
@@ -692,6 +794,382 @@ body {
     object-fit: cover;
     margin-bottom: 1rem;
     border: 4px solid #ff69b4;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.team-member img:hover {
+    transform: scale(5) translateY(-10px);
+    box-shadow: 0 15px 50px rgba(255, 105, 180, 0.6);
+    border-color: #ff8fab;
+    z-index: 1000;
+    position: relative;
+}
+
+/* Nur auf Desktop (nicht auf Mobilgeräten) */
+@media (min-width: 769px) {
+    .team-member img:hover {
+        transform: scale(5) translateY(-10px);
+        box-shadow: 0 20px 60px rgba(255, 105, 180, 0.7);
+    }
+}
+
+/* Team Modal Styles */
+.team-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.team-modal.active {
+    display: flex;
+}
+
+.team-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+}
+
+.team-modal-content {
+    position: relative;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    border-radius: 25px;
+    border: 2px solid rgba(255, 105, 180, 0.3);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8);
+    max-width: 500px;
+    width: 100%;
+    padding: 3rem;
+    text-align: center;
+    animation: teamModalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.team-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 105, 180, 0.2);
+    border: 2px solid rgba(255, 105, 180, 0.3);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.team-modal-close:hover {
+    background: #ff69b4;
+    transform: scale(1.1);
+}
+
+.team-modal-image-container {
+    margin-bottom: 2rem;
+}
+
+.team-modal-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid #ff69b4;
+    box-shadow: 0 20px 40px rgba(255, 105, 180, 0.3);
+    transition: all 0.3s ease;
+}
+
+.team-modal-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 25px 50px rgba(255, 105, 180, 0.5);
+}
+
+.team-modal-info h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+
+.team-modal-info p {
+    font-size: 1.2rem;
+    color: #ff69b4;
+    font-weight: 500;
+}
+
+@keyframes teamModalSlideIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .team-modal-content {
+        padding: 2rem;
+        max-width: 90%;
+    }
+    
+    .team-modal-image {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .team-modal-info h3 {
+        font-size: 1.5rem;
+    }
+    
+    .team-modal-info p {
+        font-size: 1rem;
+    }
+}
+
+/* Review Form Modal Styles */
+.review-form-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.review-form-modal.active {
+    display: flex;
+}
+
+.review-form-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+}
+
+.review-form-content {
+    position: relative;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    border-radius: 25px;
+    border: 2px solid rgba(255, 105, 180, 0.3);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8);
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: reviewFormSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.review-form-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 105, 180, 0.2);
+    border: 2px solid rgba(255, 105, 180, 0.3);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.review-form-close:hover {
+    background: #ff69b4;
+    transform: scale(1.1);
+}
+
+.review-form-header {
+    text-align: center;
+    padding: 2rem 2rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.review-form-header h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+
+.review-form-header p {
+    color: #cccccc;
+    font-size: 1.1rem;
+}
+
+.review-form {
+    padding: 2rem;
+}
+
+.review-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.review-form .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.review-form .form-group input,
+.review-form .form-group textarea,
+.review-form .form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.review-form .form-group input:focus,
+.review-form .form-group textarea:focus,
+.review-form .form-group select:focus {
+    outline: none;
+    border-color: #ff69b4;
+    background: rgba(255, 105, 180, 0.1);
+    box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.2);
+}
+
+.review-form .form-group input::placeholder,
+.review-form .form-group textarea::placeholder {
+    color: #cccccc;
+}
+
+/* Star Rating Styles */
+.star-rating {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.star-rating i {
+    font-size: 2rem;
+    color: #cccccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.star-rating i:hover,
+.star-rating i.active {
+    color: #ffd700;
+    transform: scale(1.1);
+}
+
+.star-rating i:hover ~ i {
+    color: #cccccc;
+}
+
+.rating-text {
+    color: #cccccc;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes reviewFormSlideIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .review-form-content {
+        max-width: 95%;
+        margin: 10px;
+    }
+    
+    .review-form {
+        padding: 1.5rem;
+    }
+    
+    .review-form-header {
+        padding: 1.5rem 1.5rem 1rem;
+    }
+    
+    .review-form-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .star-rating i {
+        font-size: 1.5rem;
+    }
+}
+
+/* User Review Styles */
+.user-review {
+    border: 2px solid rgba(255, 105, 180, 0.3);
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.05), rgba(255, 105, 180, 0.1));
+    animation: userReviewSlideIn 0.6s ease-out;
+}
+
+.user-review .review-header {
+    border-bottom: 1px solid rgba(255, 105, 180, 0.2);
+}
+
+.user-review .reviewer-info h4 {
+    color: #ff69b4;
+    font-weight: 600;
+}
+
+@keyframes userReviewSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .team-member h3 {
@@ -723,6 +1201,50 @@ body {
     font-size: 3rem;
     color: #ffd700;
     margin-bottom: 1rem;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.stars-large:hover {
+    transform: scale(1.1);
+}
+
+.stars-large i {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.stars-large:hover i {
+    animation: starPulse 0.6s ease-in-out;
+}
+
+.stars-large:hover i:nth-child(1) { animation-delay: 0s; }
+.stars-large:hover i:nth-child(2) { animation-delay: 0.1s; }
+.stars-large:hover i:nth-child(3) { animation-delay: 0.2s; }
+.stars-large:hover i:nth-child(4) { animation-delay: 0.3s; }
+.stars-large:hover i:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes starPulse {
+    0% {
+        transform: scale(1) rotate(0deg);
+        color: #ffd700;
+    }
+    25% {
+        transform: scale(1.3) rotate(10deg);
+        color: #ffed4e;
+    }
+    50% {
+        transform: scale(0.8) rotate(-5deg);
+        color: #ff69b4;
+    }
+    75% {
+        transform: scale(1.2) rotate(5deg);
+        color: #ffed4e;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        color: #ffd700;
+    }
 }
 
 .rating-text {
@@ -758,6 +1280,27 @@ body {
     height: 100%;
     background: #ff69b4;
     border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.bar-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    transition: left 0.8s ease;
+}
+
+.rating-bars:hover .bar-fill::before {
+    left: 100%;
+}
+
+.rating-bars.stars-hovered .bar-fill::before {
+    left: 100%;
 }
 
 .rating-bar span:last-child {
