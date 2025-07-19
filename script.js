@@ -1,3 +1,355 @@
+// Language Switcher
+let currentLanguage = 'de';
+
+const translations = {
+    de: {
+        // Navigation
+        'Über uns': 'Über uns',
+        'Leistungen': 'Leistungen',
+        'Standort': 'Standort',
+        'Mehr': 'Mehr',
+        'Preise': 'Preise',
+        'Bewertungen': 'Bewertungen',
+        'FAQ': 'FAQ',
+        'Kontakt': 'Kontakt',
+        
+        // Hero Section
+        'NAGELSTUDIO': 'NAGELSTUDIO',
+        'Dein Ort für makellose Nägel und entspannende Momente.': 'Dein Ort für makellose Nägel und entspannende Momente.',
+        'Termin vereinbaren': 'Termin vereinbaren',
+        '5.0 (100+ Bewertungen)': '5.0 (100+ Bewertungen)',
+        
+        // About Section
+        'About Us': 'Über uns',
+        'Willkommen bei Aga\'s Naildesign - Ihrem Premium-Nagelstudio für professionelle Nagelpflege und kreative Designs. Wir bieten Ihnen eine entspannte Atmosphäre und erstklassige Dienstleistungen für Ihre Hände und Füße.': 'Willkommen bei Aga\'s Naildesign - Ihrem Premium-Nagelstudio für professionelle Nagelpflege und kreative Designs. Wir bieten Ihnen eine entspannte Atmosphäre und erstklassige Dienstleistungen für Ihre Hände und Füße.',
+        'Mehr erfahren': 'Mehr erfahren',
+        
+        // Info Cards
+        'Anfahrt': 'Anfahrt',
+        'Einfach zu erreichen': 'Einfach zu erreichen',
+        'Öffnungszeiten': 'Öffnungszeiten',
+        'Mo-Fr: 9:00-19:00<br>Sa: 9:00-16:00': 'Mo-Fr: 9:00-19:00<br>Sa: 9:00-16:00',
+        
+        // Services
+        'Services': 'Leistungen',
+        'Manicure': 'Maniküre',
+        'Pedicure': 'Pediküre',
+        'Gel Extension': 'Gel-Modellage',
+        'Nail Repair': 'Nagelreparatur',
+        'Nail Design': 'Nageldesign',
+        'Buchen': 'Buchen',
+        'View All Reviews': 'Alle Bewertungen anzeigen',
+        
+        // Reviews
+        'Reviews': 'Bewertungen',
+        'vor 2 Tagen': 'vor 2 Tagen',
+        'vor 1 Woche': 'vor 1 Woche',
+        'vor 2 Wochen': 'vor 2 Wochen',
+        'vor 2 Monaten': 'vor 2 Monaten',
+        'vor 1 Monat': 'vor 1 Monat',
+        'vor 6 Wochen': 'vor 6 Wochen',
+        'vor 3 Wochen': 'vor 3 Wochen',
+        'Mehr anzeigen': 'Mehr anzeigen',
+        
+        // Team
+        'Team': 'Team',
+        'Inhaberin, Nageldesignerin': 'Inhaberin, Nageldesignerin',
+        'Nageldesignerin': 'Nageldesignerin',
+        
+        // Rating Summary
+        '5 Sterne': '5 Sterne',
+        '4 Sterne': '4 Sterne',
+        '3 Sterne': '3 Sterne',
+        '2 Sterne': '2 Sterne',
+        '1 Stern': '1 Stern',
+        'Bewertung schreiben': 'Bewertung schreiben',
+        'Alle Bewertungen anzeigen': 'Alle Bewertungen anzeigen',
+        
+        // Map
+        'Karte': 'Karte',
+        'Adresse': 'Adresse',
+        'Musterstraße 123<br>12345 Musterstadt': 'Musterstraße 123<br>12345 Musterstadt',
+        'Route berechnen': 'Route berechnen',
+        
+        // FAQ
+        'Häufig gestellte Fragen': 'Häufig gestellte Fragen',
+        'Wie vereinbaren Sie einen Termin?': 'Wie vereinbaren Sie einen Termin?',
+        'Sie können einen Termin telefonisch unter +49 123 456789 oder über unsere Online-Buchung vereinbaren. Wir sind Montag bis Freitag von 9:00 bis 19:00 Uhr und Samstag von 9:00 bis 16:00 Uhr für Sie da.': 'Sie können einen Termin telefonisch unter +49 123 456789 oder über unsere Online-Buchung vereinbaren. Wir sind Montag bis Freitag von 9:00 bis 19:00 Uhr und Samstag von 9:00 bis 16:00 Uhr für Sie da.',
+        'Was sind Acrylnägel?': 'Was sind Acrylnägel?',
+        'Acrylnägel sind künstliche Nägel, die aus Acrylpulver und Flüssigkeit hergestellt werden. Sie sind sehr robust und halten länger als Gel-Nägel. Sie eignen sich besonders für Menschen mit brüchigen oder kurzen Nägeln.': 'Acrylnägel sind künstliche Nägel, die aus Acrylpulver und Flüssigkeit hergestellt werden. Sie sind sehr robust und halten länger als Gel-Nägel. Sie eignen sich besonders für Menschen mit brüchigen oder kurzen Nägeln.',
+        'Was ist das Ruhe- und Pflegesystem?': 'Was ist das Ruhe- und Pflegesystem?',
+        'Das Ruhe- und Pflegesystem ist eine spezielle Behandlung für Ihre natürlichen Nägel. Es stärkt die Nägel und fördert das gesunde Wachstum. Diese Behandlung wird zwischen den Modellagen empfohlen.': 'Das Ruhe- und Pflegesystem ist eine spezielle Behandlung für Ihre natürlichen Nägel. Es stärkt die Nägel und fördert das gesunde Wachstum. Diese Behandlung wird zwischen den Modellagen empfohlen.',
+        'Wie lange halten Gel-Nägel?': 'Wie lange halten Gel-Nägel?',
+        'Gel-Nägel halten in der Regel 2-3 Wochen, je nach Nagelwachstum und Pflege. Wir empfehlen, alle 2-3 Wochen zur Auffüllung zu kommen, um das beste Ergebnis zu erzielen.': 'Gel-Nägel halten in der Regel 2-3 Wochen, je nach Nagelwachstum und Pflege. Wir empfehlen, alle 2-3 Wochen zur Auffüllung zu kommen, um das beste Ergebnis zu erzielen.',
+        
+        // Footer
+        'Navigation': 'Navigation',
+        'Startseite': 'Startseite',
+        'Folgen Sie uns': 'Folgen Sie uns',
+        
+        // Booking
+        'Wählen Sie Ihre Leistung': 'Wählen Sie Ihre Leistung',
+        'Professionelle Handpflege mit Nagelformung': 'Professionelle Handpflege mit Nagelformung',
+        'Entspannende Fußpflege und -massage': 'Entspannende Fußpflege und -massage',
+        'Langlebige Gel-Nägel mit Verlängerung': 'Langlebige Gel-Nägel mit Verlängerung',
+        'Lackierung mit langanhaltendem Glanz': 'Lackierung mit langanhaltendem Glanz',
+        'Professionelle Reparatur beschädigter Nägel': 'Professionelle Reparatur beschädigter Nägel',
+        'Kreative Verzierungen und Muster': 'Kreative Verzierungen und Muster',
+        'Ihre Kontaktdaten': 'Ihre Kontaktdaten',
+        'Name *': 'Name *',
+        'E-Mail *': 'E-Mail *',
+        'Telefon': 'Telefon',
+        'Gewünschtes Datum *': 'Gewünschtes Datum *',
+        'Gewünschte Uhrzeit *': 'Gewünschte Uhrzeit *',
+        'Bitte wählen': 'Bitte wählen',
+        'Anmerkungen': 'Anmerkungen',
+        'Besondere Wünsche oder Anmerkungen...': 'Besondere Wünsche oder Anmerkungen...',
+        'Ausgewählte Leistung:': 'Ausgewählte Leistung:',
+        'Abbrechen': 'Abbrechen',
+        'Zurück': 'Zurück',
+        'Termin buchen': 'Termin buchen',
+        'Termin erfolgreich gebucht!': 'Termin erfolgreich gebucht!',
+        'Vielen Dank für Ihre Buchung. Wir haben Ihnen eine Bestätigung per E-Mail gesendet.': 'Vielen Dank für Ihre Buchung. Wir haben Ihnen eine Bestätigung per E-Mail gesendet.',
+        'Leistung:': 'Leistung:',
+        'Datum:': 'Datum:',
+        'Uhrzeit:': 'Uhrzeit:',
+        'Schließen': 'Schließen',
+        
+        // Cookie Banner
+        'Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern.': 'Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern.',
+        'Cookie-Einstellungen': 'Cookie-Einstellungen',
+        'Alle akzeptieren': 'Alle akzeptieren',
+        
+        // Review Form
+        'Bewertung schreiben': 'Bewertung schreiben',
+        'Teilen Sie Ihre Erfahrung mit uns': 'Teilen Sie Ihre Erfahrung mit uns',
+        'Ihr Name *': 'Ihr Name *',
+        'Ihre Bewertung *': 'Ihre Bewertung *',
+        'Klicken Sie auf die Sterne': 'Klicken Sie auf die Sterne',
+        'Titel Ihrer Bewertung': 'Titel Ihrer Bewertung',
+        'z.B. \'Fantastischer Service!\'': 'z.B. \'Fantastischer Service!\'',
+        'Ihre Bewertung *': 'Ihre Bewertung *',
+        'Beschreiben Sie Ihre Erfahrung...': 'Beschreiben Sie Ihre Erfahrung...',
+        'In Anspruch genommene Leistung': 'In Anspruch genommene Leistung',
+        'Bitte wählen': 'Bitte wählen',
+        'Bewertung absenden': 'Bewertung absenden'
+    },
+    en: {
+        // Navigation
+        'Über uns': 'About',
+        'Leistungen': 'Services',
+        'Standort': 'Location',
+        'Mehr': 'More',
+        'Preise': 'Prices',
+        'Bewertungen': 'Reviews',
+        'FAQ': 'FAQ',
+        'Kontakt': 'Contact',
+        
+        // Hero Section
+        'NAGELSTUDIO': 'NAIL STUDIO',
+        'Dein Ort für makellose Nägel und entspannende Momente.': 'Your place for flawless nails and relaxing moments.',
+        'Termin vereinbaren': 'Book Appointment',
+        '5.0 (100+ Bewertungen)': '5.0 (100+ Reviews)',
+        
+        // About Section
+        'About Us': 'About Us',
+        'Willkommen bei Aga\'s Naildesign - Ihrem Premium-Nagelstudio für professionelle Nagelpflege und kreative Designs. Wir bieten Ihnen eine entspannte Atmosphäre und erstklassige Dienstleistungen für Ihre Hände und Füße.': 'Welcome to Aga\'s Naildesign - your premium nail studio for professional nail care and creative designs. We offer you a relaxed atmosphere and first-class services for your hands and feet.',
+        'Mehr erfahren': 'Learn More',
+        
+        // Info Cards
+        'Anfahrt': 'Directions',
+        'Einfach zu erreichen': 'Easy to reach',
+        'Öffnungszeiten': 'Opening Hours',
+        'Mo-Fr: 9:00-19:00<br>Sa: 9:00-16:00': 'Mon-Fri: 9:00-19:00<br>Sat: 9:00-16:00',
+        
+        // Services
+        'Services': 'Services',
+        'Manicure': 'Manicure',
+        'Pedicure': 'Pedicure',
+        'Gel Extension': 'Gel Extension',
+        'Nail Repair': 'Nail Repair',
+        'Nail Design': 'Nail Design',
+        'Buchen': 'Book',
+        'View All Reviews': 'View All Reviews',
+        
+        // Reviews
+        'Reviews': 'Reviews',
+        'vor 2 Tagen': '2 days ago',
+        'vor 1 Woche': '1 week ago',
+        'vor 2 Wochen': '2 weeks ago',
+        'vor 2 Monaten': '2 months ago',
+        'vor 1 Monat': '1 month ago',
+        'vor 6 Wochen': '6 weeks ago',
+        'vor 3 Wochen': '3 weeks ago',
+        'Mehr anzeigen': 'Show More',
+        
+        // Team
+        'Team': 'Team',
+        'Inhaberin, Nageldesignerin': 'Owner, Nail Designer',
+        'Nageldesignerin': 'Nail Designer',
+        
+        // Rating Summary
+        '5 Sterne': '5 Stars',
+        '4 Sterne': '4 Stars',
+        '3 Sterne': '3 Stars',
+        '2 Sterne': '2 Stars',
+        '1 Stern': '1 Star',
+        'Bewertung schreiben': 'Write Review',
+        'Alle Bewertungen anzeigen': 'View All Reviews',
+        
+        // Map
+        'Karte': 'Map',
+        'Adresse': 'Address',
+        'Musterstraße 123<br>12345 Musterstadt': 'Sample Street 123<br>12345 Sample City',
+        'Route berechnen': 'Get Directions',
+        
+        // FAQ
+        'Häufig gestellte Fragen': 'Frequently Asked Questions',
+        'Wie vereinbaren Sie einen Termin?': 'How do I book an appointment?',
+        'Sie können einen Termin telefonisch unter +49 123 456789 oder über unsere Online-Buchung vereinbaren. Wir sind Montag bis Freitag von 9:00 bis 19:00 Uhr und Samstag von 9:00 bis 16:00 Uhr für Sie da.': 'You can book an appointment by phone at +49 123 456789 or through our online booking. We are available Monday to Friday from 9:00 to 19:00 and Saturday from 9:00 to 16:00.',
+        'Was sind Acrylnägel?': 'What are acrylic nails?',
+        'Acrylnägel sind künstliche Nägel, die aus Acrylpulver und Flüssigkeit hergestellt werden. Sie sind sehr robust und halten länger als Gel-Nägel. Sie eignen sich besonders für Menschen mit brüchigen oder kurzen Nägeln.': 'Acrylic nails are artificial nails made from acrylic powder and liquid. They are very durable and last longer than gel nails. They are particularly suitable for people with brittle or short nails.',
+        'Was ist das Ruhe- und Pflegesystem?': 'What is the rest and care system?',
+        'Das Ruhe- und Pflegesystem ist eine spezielle Behandlung für Ihre natürlichen Nägel. Es stärkt die Nägel und fördert das gesunde Wachstum. Diese Behandlung wird zwischen den Modellagen empfohlen.': 'The rest and care system is a special treatment for your natural nails. It strengthens the nails and promotes healthy growth. This treatment is recommended between extensions.',
+        'Wie lange halten Gel-Nägel?': 'How long do gel nails last?',
+        'Gel-Nägel halten in der Regel 2-3 Wochen, je nach Nagelwachstum und Pflege. Wir empfehlen, alle 2-3 Wochen zur Auffüllung zu kommen, um das beste Ergebnis zu erzielen.': 'Gel nails typically last 2-3 weeks, depending on nail growth and care. We recommend coming for a fill every 2-3 weeks to achieve the best result.',
+        
+        // Footer
+        'Navigation': 'Navigation',
+        'Startseite': 'Home',
+        'Folgen Sie uns': 'Follow Us',
+        
+        // Booking
+        'Wählen Sie Ihre Leistung': 'Choose Your Service',
+        'Professionelle Handpflege mit Nagelformung': 'Professional hand care with nail shaping',
+        'Entspannende Fußpflege und -massage': 'Relaxing foot care and massage',
+        'Langlebige Gel-Nägel mit Verlängerung': 'Long-lasting gel nails with extension',
+        'Lackierung mit langanhaltendem Glanz': 'Polish with long-lasting shine',
+        'Professionelle Reparatur beschädigter Nägel': 'Professional repair of damaged nails',
+        'Kreative Verzierungen und Muster': 'Creative decorations and patterns',
+        'Ihre Kontaktdaten': 'Your Contact Information',
+        'Name *': 'Name *',
+        'E-Mail *': 'Email *',
+        'Telefon': 'Phone',
+        'Gewünschtes Datum *': 'Preferred Date *',
+        'Gewünschte Uhrzeit *': 'Preferred Time *',
+        'Bitte wählen': 'Please select',
+        'Anmerkungen': 'Notes',
+        'Besondere Wünsche oder Anmerkungen...': 'Special requests or notes...',
+        'Ausgewählte Leistung:': 'Selected Service:',
+        'Abbrechen': 'Cancel',
+        'Zurück': 'Back',
+        'Termin buchen': 'Book Appointment',
+        'Termin erfolgreich gebucht!': 'Appointment successfully booked!',
+        'Vielen Dank für Ihre Buchung. Wir haben Ihnen eine Bestätigung per E-Mail gesendet.': 'Thank you for your booking. We have sent you a confirmation by email.',
+        'Leistung:': 'Service:',
+        'Datum:': 'Date:',
+        'Uhrzeit:': 'Time:',
+        'Schließen': 'Close',
+        
+        // Cookie Banner
+        'Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern.': 'We use cookies to improve your experience on our website.',
+        'Cookie-Einstellungen': 'Cookie Settings',
+        'Alle akzeptieren': 'Accept All',
+        
+        // Review Form
+        'Bewertung schreiben': 'Write Review',
+        'Teilen Sie Ihre Erfahrung mit uns': 'Share your experience with us',
+        'Ihr Name *': 'Your Name *',
+        'Ihre Bewertung *': 'Your Rating *',
+        'Klicken Sie auf die Sterne': 'Click on the stars',
+        'Titel Ihrer Bewertung': 'Title of your review',
+        'z.B. \'Fantastischer Service!\'': 'e.g. \'Fantastic Service!\'',
+        'Ihre Bewertung *': 'Your Review *',
+        'Beschreiben Sie Ihre Erfahrung...': 'Describe your experience...',
+        'In Anspruch genommene Leistung': 'Service Used',
+        'Bitte wählen': 'Please select',
+        'Bewertung absenden': 'Submit Review'
+    }
+};
+
+function switchLanguage() {
+    currentLanguage = currentLanguage === 'de' ? 'en' : 'de';
+    
+    // Update language selector
+    const languageSelector = document.getElementById('languageSelector');
+    const currentLanguageSpan = document.getElementById('currentLanguage');
+    const flagIcon = languageSelector.querySelector('.flag-icon');
+    
+    if (currentLanguage === 'en') {
+        flagIcon.src = 'https://flagcdn.com/gb.svg';
+        flagIcon.alt = 'English';
+        currentLanguageSpan.textContent = 'EN';
+    } else {
+        flagIcon.src = 'https://flagcdn.com/de.svg';
+        flagIcon.alt = 'Deutsch';
+        currentLanguageSpan.textContent = 'DE';
+    }
+    
+    // Update all translatable elements
+    updatePageLanguage();
+}
+
+function updatePageLanguage() {
+    const translatableElements = document.querySelectorAll('[data-de][data-en]');
+    
+    translatableElements.forEach(element => {
+        const germanText = element.getAttribute('data-de');
+        const englishText = element.getAttribute('data-en');
+        
+        if (currentLanguage === 'en') {
+            // Check if the element contains HTML tags
+            if (germanText.includes('<br>') || englishText.includes('<br>')) {
+                element.innerHTML = englishText;
+            } else {
+                element.textContent = englishText;
+            }
+        } else {
+            // Check if the element contains HTML tags
+            if (germanText.includes('<br>') || englishText.includes('<br>')) {
+                element.innerHTML = germanText;
+            } else {
+                element.textContent = germanText;
+            }
+        }
+    });
+    
+    // Handle placeholder translations
+    const placeholderElements = document.querySelectorAll('[data-de-placeholder][data-en-placeholder]');
+    placeholderElements.forEach(element => {
+        const germanPlaceholder = element.getAttribute('data-de-placeholder');
+        const englishPlaceholder = element.getAttribute('data-en-placeholder');
+        
+        if (currentLanguage === 'en') {
+            element.placeholder = englishPlaceholder;
+        } else {
+            element.placeholder = germanPlaceholder;
+        }
+    });
+    
+    // Handle option translations
+    const optionElements = document.querySelectorAll('option[data-de][data-en]');
+    optionElements.forEach(element => {
+        const germanText = element.getAttribute('data-de');
+        const englishText = element.getAttribute('data-en');
+        
+        if (currentLanguage === 'en') {
+            element.textContent = englishText;
+        } else {
+            element.textContent = germanText;
+        }
+    });
+}
+
+// Initialize language switcher
+document.addEventListener('DOMContentLoaded', function() {
+    const languageSelector = document.getElementById('languageSelector');
+    if (languageSelector) {
+        languageSelector.addEventListener('click', switchLanguage);
+        languageSelector.style.cursor = 'pointer';
+    }
+});
+
 // Lenis Smooth Scroll Initialisierung
 const lenis = new Lenis({
   duration: 1.5,
@@ -729,18 +1081,66 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     
-    // Close Calendly popup function
-    function closeCalendlyPopup() {
-        const calendlyPopup = document.getElementById('calendlyPopup');
-        const calendlyIframe = document.getElementById('calendlyIframe');
-        if (calendlyPopup) {
-            calendlyPopup.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        if (calendlyIframe) {
-            calendlyIframe.src = '';
-        }
+    // Generate Calendly URL with language support
+function generateCalendlyUrl(serviceName) {
+    // Versuche verschiedene Calendly URL-Strukturen für die Sprachauswahl
+    let baseUrl;
+    
+    if (currentLanguage === 'en') {
+        // Englische URL-Varianten
+        baseUrl = "https://calendly.com/leonidas-pyka/30min";
+    } else {
+        // Deutsche URL-Variante
+        baseUrl = "https://calendly.com/leonidas-pyka/30min";
     }
+    
+    const params = new URLSearchParams({
+        background_color: "000000",
+        text_color: "FFFFFF",
+        primary_color: "FFD700",
+        hide_landing_page_details: "1",
+        hide_event_type_details: "1",
+        a1: serviceName
+    });
+    
+    // Verschiedene Sprachparameter für Calendly
+    if (currentLanguage === 'en') {
+        // Englische Parameter
+        params.append('locale', 'en');
+        params.append('lang', 'en');
+        params.append('language', 'en');
+        params.append('hl', 'en');
+        params.append('ui_locale', 'en');
+        params.append('locale_code', 'en');
+    } else {
+        // Deutsche Parameter
+        params.append('locale', 'de');
+        params.append('lang', 'de');
+        params.append('language', 'de');
+        params.append('hl', 'de');
+        params.append('ui_locale', 'de');
+        params.append('locale_code', 'de');
+    }
+    
+    console.log('Generating Calendly URL with language:', currentLanguage);
+    console.log('Base URL:', baseUrl);
+    console.log('URL parameters:', params.toString());
+    
+    return `${baseUrl}?${params.toString()}`;
+}
+
+// Close Calendly popup function
+function closeCalendlyPopup() {
+    const calendlyPopup = document.getElementById('calendlyPopup');
+    const calendlyIframe = document.getElementById('calendlyIframe');
+    if (calendlyPopup) {
+        calendlyPopup.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    if (calendlyIframe) {
+        calendlyIframe.src = '';
+    }
+}
     
     // Überprüfe ob Calendly-HTML existiert
     console.log('Checking for Calendly HTML elements...');
@@ -897,22 +1297,37 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Opening Calendly after delay...');
                 console.log('Service to book:', serviceToBook);
                 
-                // Direkte Calendly-Integration ohne Funktionsaufruf
-                const baseUrl = "https://calendly.com/leonidas-pyka/30min";
-                const params = new URLSearchParams({
-                    background_color: "000000",
-                    text_color: "FFFFFF",
-                    primary_color: "FFD700",
-                    hide_landing_page_details: "1",
-                    hide_event_type_details: "1",
-                    a1: serviceToBook.name
-                });
-                
-                const fullUrl = `${baseUrl}?${params.toString()}`;
+                // Calendly-URL mit Sprachunterstützung generieren
+                const fullUrl = generateCalendlyUrl(serviceToBook.name);
                 console.log('Calendly URL:', fullUrl);
                 
                 // Calendly-Elemente direkt verwenden
                 calendlyIframe.src = fullUrl;
+                
+                // Setze Iframe-Attribute für bessere Sprachunterstützung
+                if (currentLanguage === 'en') {
+                    calendlyIframe.setAttribute('lang', 'en');
+                    calendlyIframe.setAttribute('data-lang', 'en');
+                } else {
+                    calendlyIframe.setAttribute('lang', 'de');
+                    calendlyIframe.setAttribute('data-lang', 'de');
+                }
+                
+                // Zusätzliche Sprachaktualisierung nach dem Laden
+                calendlyIframe.onload = function() {
+                    console.log('Calendly iframe loaded with language:', currentLanguage);
+                    // Versuche die Sprache nochmal zu setzen
+                    if (currentLanguage === 'en') {
+                        try {
+                            calendlyIframe.contentWindow.postMessage({
+                                type: 'setLanguage',
+                                language: 'en'
+                            }, '*');
+                        } catch (e) {
+                            console.log('Could not set language via postMessage:', e);
+                        }
+                    }
+                };
                 
                 // Update service display
                 const serviceNameElement = document.getElementById('calendlyServiceName');
@@ -1017,18 +1432,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Direkt aus der Services-Sektion - öffne Calendly
                     const serviceName = serviceItem.querySelector('h3').textContent;
                     
-                    // Direkte Calendly-Integration
-                    const baseUrl = "https://calendly.com/leonidas-pyka/30min";
-                    const params = new URLSearchParams({
-                        background_color: "000000",
-                        text_color: "FFFFFF",
-                        primary_color: "FFD700",
-                        hide_landing_page_details: "1",
-                        hide_event_type_details: "1",
-                        a1: serviceName
-                    });
-                    
-                    const fullUrl = `${baseUrl}?${params.toString()}`;
+                    // Calendly-URL mit Sprachunterstützung generieren
+                    const fullUrl = generateCalendlyUrl(serviceName);
                     
                     // Calendly-Elemente direkt verwenden
                     const calendlyIframe = document.getElementById('calendlyIframe');
@@ -1036,6 +1441,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     if (calendlyIframe && calendlyPopup) {
                         calendlyIframe.src = fullUrl;
+                        
+                        // Setze Iframe-Attribute für bessere Sprachunterstützung
+                        if (currentLanguage === 'en') {
+                            calendlyIframe.setAttribute('lang', 'en');
+                            calendlyIframe.setAttribute('data-lang', 'en');
+                        } else {
+                            calendlyIframe.setAttribute('lang', 'de');
+                            calendlyIframe.setAttribute('data-lang', 'de');
+                        }
+                        
+                        // Zusätzliche Sprachaktualisierung nach dem Laden
+                        calendlyIframe.onload = function() {
+                            console.log('Calendly iframe loaded with language:', currentLanguage);
+                            // Versuche die Sprache nochmal zu setzen
+                            if (currentLanguage === 'en') {
+                                try {
+                                    calendlyIframe.contentWindow.postMessage({
+                                        type: 'setLanguage',
+                                        language: 'en'
+                                    }, '*');
+                                } catch (e) {
+                                    console.log('Could not set language via postMessage:', e);
+                                }
+                            }
+                        };
                         
                         // Update service display
                         const serviceNameElement = document.getElementById('calendlyServiceName');
