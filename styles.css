@@ -675,6 +675,10 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     color: var(--text-primary);
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .theme-toggle:hover {
@@ -2838,6 +2842,10 @@ body {
         color: var(--text-primary);
         flex: 1;
         justify-content: center;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
     }
     
     .mobile-theme-toggle:hover,
