@@ -1900,12 +1900,12 @@ body {
 @media (max-width: 768px) {
     .booking-modal {
         margin: 10px;
-        max-height: 95vh;
+        max-height: 80vh;
     }
     
     .booking-content {
         padding: 1.5rem;
-        max-height: calc(95vh - 80px);
+        max-height: calc(80vh - 80px);
     }
     
     .booking-header {
@@ -2048,31 +2048,60 @@ body {
 /* Mobile Responsive für Calendly */
 @media (max-width: 768px) {
     .calendly-modal {
-        margin: 10px;
-        max-height: 95vh;
+        margin: 5px;
+        max-height: 85vh;
+        width: calc(100% - 10px);
     }
     
     .calendly-content {
-        padding: 1.5rem;
-        max-height: calc(95vh - 80px);
+        padding: 1rem;
+        max-height: calc(85vh - 70px);
     }
     
     .calendly-header {
-        padding: 1rem 1.5rem;
+        padding: 0.8rem 1rem;
     }
     
     .calendly-header h2 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
     
     .calendly-iframe-container iframe {
-        height: 500px;
+        height: calc(85vh - 200px);
+        min-height: 400px;
     }
     
     .service-display {
         flex-direction: column;
         gap: 0.5rem;
         text-align: center;
+    }
+}
+
+/* Extra kleine Handys */
+@media (max-width: 480px) {
+    .calendly-modal {
+        margin: 2px;
+        max-height: 90vh;
+        width: calc(100% - 4px);
+    }
+    
+    .calendly-content {
+        padding: 0.8rem;
+        max-height: calc(90vh - 60px);
+    }
+    
+    .calendly-header {
+        padding: 0.6rem 0.8rem;
+    }
+    
+    .calendly-header h2 {
+        font-size: 1.1rem;
+    }
+    
+    .calendly-iframe-container iframe {
+        height: calc(90vh - 180px);
+        min-height: 350px;
     }
 }
 
