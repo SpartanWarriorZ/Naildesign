@@ -64,6 +64,15 @@ body {
     display: block;
     object-fit: contain;
     margin-right: 20px;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    -webkit-user-drag: none !important;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
 }
 
 .nav-menu {
@@ -350,6 +359,15 @@ body {
     object-fit: cover;
     filter: drop-shadow(0 40px 240px rgba(0,0,0,1)) drop-shadow(0 10px 40px rgba(0,0,0,1));
     transition: transform 0.3s cubic-bezier(.4,2,.6,1), filter 0.3s;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    -webkit-user-drag: none !important;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
 }
 
 .hero-logo:hover {
