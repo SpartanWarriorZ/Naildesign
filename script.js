@@ -266,20 +266,147 @@ const translations = {
         'In Anspruch genommene Leistung': 'Service Used',
         'Bitte wählen': 'Please select',
         'Bewertung absenden': 'Submit Review'
+    },
+    pl: {
+        // Navigation
+        'Über uns': 'O nas',
+        'Leistungen': 'Usługi',
+        'Standort': 'Lokalizacja',
+        'Mehr': 'Więcej',
+        'Preise': 'Cennik',
+        'Bewertungen': 'Opinie',
+        'FAQ': 'FAQ',
+        'Kontakt': 'Kontakt',
+        // Hero Section
+        'NAGELSTUDIO': 'STUDIO PAZNOKCI',
+        'Dein Ort für makellose Nägel und entspannende Momente.': 'Twoje miejsce na perfekcyjne paznokcie i relaksujące chwile.',
+        'Termin vereinbaren': 'Umów wizytę',
+        '5.0 (100+ Bewertungen)': '5.0 (100+ opinii)',
+        // About Section
+        'About Us': 'O nas',
+        "Willkommen bei Aga's Naildesign - Ihrem Premium-Nagelstudio für professionelle Nagelpflege und kreative Designs. Wir bieten Ihnen eine entspannte Atmosphäre und erstklassige Dienstleistungen für Ihre Hände und Füße.": "Witamy w Aga's Naildesign - Twoim ekskluzywnym studiu paznokci oferującym profesjonalną pielęgnację i kreatywne wzory. Zapewniamy relaksującą atmosferę i usługi na najwyższym poziomie dla Twoich dłoni i stóp.",
+        'Mehr erfahren': 'Dowiedz się więcej',
+        // Info Cards
+        'Anfahrt': 'Dojazd',
+        'Einfach zu erreichen': 'Łatwy dojazd',
+        'Öffnungszeiten': 'Godziny otwarcia',
+        'Mo-Fr: 9:00-19:00<br>Sa: 9:00-16:00': 'Pn-Pt: 9:00-19:00<br>Sob: 9:00-16:00',
+        // Services
+        'Services': 'Usługi',
+        'Manicure': 'Manicure',
+        'Pedicure': 'Pedicure',
+        'Gel Extension': 'Gel Extension',
+        'Nail Repair': 'Naprawa paznokci',
+        'Nail Design': 'Projekt paznokci',
+        'Buchen': 'Umów wizytę',
+        'View All Reviews': 'Zobacz wszystkie opinie',
+        // Reviews
+        'Reviews': 'Opinie',
+        'vor 2 Tagen': '2 dni temu',
+        'vor 1 Woche': '1 tydzień temu',
+        'vor 2 Wochen': '2 tygodnie temu',
+        'vor 2 Monaten': '2 miesiące temu',
+        'vor 1 Monat': '1 miesiąc temu',
+        'vor 6 Wochen': '6 tygodni temu',
+        'vor 3 Wochen': '3 tygodnie temu',
+        'Mehr anzeigen': 'Pokaż więcej',
+        // Team
+        'Team': 'Zespół',
+        'Inhaberin, Nageldesignerin': 'Właściciel, Projektant paznokci',
+        'Nageldesignerin': 'Projektant paznokci',
+        // Rating Summary
+        '5 Sterne': '5 gwiazdek',
+        '4 Sterne': '4 gwiazdek',
+        '3 Sterne': '3 gwiazdek',
+        '2 Sterne': '2 gwiazdek',
+        '1 Stern': '1 gwiazda',
+        'Bewertung schreiben': 'Napisz opinię',
+        'Alle Bewertungen anzeigen': 'Pokaż wszystkie opinie',
+        // Map
+        'Karte': 'Mapa',
+        'Adresse': 'Adres',
+        'Musterstraße 123<br>12345 Musterstadt': 'Przykładowa ulica 123<br>12345 Miejscowość przykładowa',
+        'Route berechnen': 'Oblicz trasę',
+        // FAQ
+        'Häufig gestellte Fragen': 'Często zadawane pytania',
+        'Wie vereinbaren Sie einen Termin?': 'Jak umówić wizytę?',
+        'Sie können einen Termin telefonisch unter +49 123 456789 oder über unsere Online-Buchung vereinbaren. Wir sind Montag bis Freitag von 9:00 bis 19:00 Uhr und Samstag von 9:00 bis 16:00 Uhr für Sie da.': 'Możesz umówić wizytę telefonicznie pod numer +49 123 456789 lub przez naszą rezerwację online. Jesteśmy dostępni od poniedziałku do piątku w godzinach 9:00 do 19:00 i w sobotę od 9:00 do 16:00.',
+        'Was sind Acrylnägel?': 'Co to są paznokcie akrylowe?',
+        'Acrylnägel sind künstliche Nägel, die aus Acrylpulver und Flüssigkeit hergestellt werden. Sie sind sehr robust und halten länger als Gel-Nägel. Sie eignen sich besonders für Menschen mit brüchigen oder kurzen Nägeln.': 'Paznokcie akrylowe to sztuczne paznokcie wykonane z proszku akrylowego i cieczy. Są bardzo trwałe i trwają dłużej niż paznokcie gelowe. Najlepiej nadają się do osób z słabymi lub krótkimi paznokciami.',
+        'Was ist das Ruhe- und Pflegesystem?': 'Jakie jest system odpoczynku i pielęgnacji?',
+        'Das Ruhe- und Pflegesystem ist eine spezielle Behandlung für Ihre natürlichen Nägel. Es stärkt die Nägel und fördert das gesunde Wachstum. Diese Behandlung wird zwischen den Modellagen empfohlen.': 'System odpoczynku i pielęgnacji to specjalna terapia dla Twoich naturalnych paznokci. Wzmacnia paznokcie i wspomaga zdrowy wzrost. Ta terapia jest zalecana między rozszerzeniami.',
+        'Wie lange halten Gel-Nägel?': 'Jak długo trwają paznokcie gelowe?',
+        'Gel-Nägel halten in der Regel 2-3 Wochen, je nach Nagelwachstum und Pflege. Wir empfehlen, alle 2-3 Wochen zur Auffüllung zu kommen, um das beste Ergebnis zu erzielen.': 'Paznokcie gelowe zwykle trwają 2-3 tygodnie, w zależności od wzrostu paznokci i pielęgnacji. Zalecamy przychodzenie co 2-3 tygodnie, aby osiągnąć najlepszy efekt.',
+        
+        // Footer
+        'Navigation': 'Nawigacja',
+        'Startseite': 'Strona główna',
+        'Folgen Sie uns': 'Obserwuj nas',
+        
+        // Booking
+        'Wählen Sie Ihre Leistung': 'Wybierz usługę',
+        'Professionelle Handpflege mit Nagelformung': 'Profesjonalna pielęgnacja rąk z formowaniem paznokci',
+        'Entspannende Fußpflege und -massage': 'Odpoczynkowa pielęgnacja stóp i masaż',
+        'Langlebige Gel-Nägel mit Verlängerung': 'Trwałe paznokcie gelowe z rozszerzeniem',
+        'Lackierung mit langanhaltendem Glanz': 'Lackowanie z długotrwałym połyskiem',
+        'Professionelle Reparatur beschädigter Nägel': 'Profesjonalna naprawa uszkodzonych paznokci',
+        'Kreative Verzierungen und Muster': 'Kreatywne ozdoby i wzory',
+        'Ihre Kontaktdaten': 'Twoje dane kontaktowe',
+        'Name *': 'Imię *',
+        'E-Mail *': 'E-mail *',
+        'Telefon': 'Telefon',
+        'Gewünschtes Datum *': 'Preferowana data *',
+        'Gewünschte Uhrzeit *': 'Preferowana godzina *',
+        'Bitte wählen': 'Wybierz',
+        'Anmerkungen': 'Uwagi',
+        'Besondere Wünsche oder Anmerkungen...': 'Specjalne życzenia lub uwagi...',
+        'Ausgewählte Leistung:': 'Wybrana usługa:',
+        'Abbrechen': 'Anuluj',
+        'Zurück': 'Wstecz',
+        'Termin buchen': 'Umów wizytę',
+        'Termin erfolgreich gebucht!': 'Wizyta zarezerwowana!',
+        'Vielen Dank für Ihre Buchung. Wir haben Ihnen eine Bestätigung per E-Mail gesendet.': 'Dziękujemy za rezerwację. Wysłaliśmy Ci potwierdzenie e-mailem.',
+        'Leistung:': 'Usługa:',
+        'Datum:': 'Data:',
+        'Uhrzeit:': 'Godzina:',
+        'Schließen': 'Zamknij',
+        
+        // Cookie Banner
+        'Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern.': 'Używamy plików cookie, aby poprawić Twoją wizytę na naszej stronie internetowej.',
+        'Cookie-Einstellungen': 'Ustawienia plików cookie',
+        'Alle akzeptieren': 'Zaakceptuj wszystkie',
+        
+        // Review Form
+        'Bewertung schreiben': 'Napisz opinię',
+        'Teilen Sie Ihre Erfahrung mit uns': 'Podziel się swoją wizytą z nami',
+        'Ihr Name *': 'Twoje imię *',
+        'Ihre Bewertung *': 'Twoja opinia *',
+        'Klicken Sie auf die Sterne': 'Kliknij na gwiazdki',
+        'Titel Ihrer Bewertung': 'Tytuł Twojej opinii',
+        'z.B. \'Fantastischer Service!\'': 'np. \'Fantastyczna usługa!\'',
+        'Ihre Bewertung *': 'Twoja opinia *',
+        'Beschreiben Sie Ihre Erfahrung...': 'Opisz swoją wizytę...',
+        'In Anspruch genommene Leistung': 'Wykorzystana usługa',
+        'Bitte wählen': 'Wybierz',
+        'Bewertung absenden': 'Prześlij opinię'
     }
 };
 
+// Sprachumschaltung anpassen
 function switchLanguage() {
-    currentLanguage = currentLanguage === 'de' ? 'en' : 'de';
-    
+    if (currentLanguage === 'de') {
+        currentLanguage = 'en';
+    } else if (currentLanguage === 'en') {
+        currentLanguage = 'pl';
+    } else {
+        currentLanguage = 'de';
+    }
     // Update language selectors (desktop and mobile)
     const languageSelector = document.getElementById('languageSelector');
     const mobileLanguageSelector = document.getElementById('mobileLanguageSelector');
     const currentLanguageSpan = document.getElementById('currentLanguage');
     const mobileCurrentLanguageSpan = document.getElementById('mobileCurrentLanguage');
-    
     if (currentLanguage === 'en') {
-        // Update desktop
         if (languageSelector) {
             const flagIcon = languageSelector.querySelector('.flag-icon');
             flagIcon.src = 'https://flagcdn.com/gb.svg';
@@ -288,8 +415,6 @@ function switchLanguage() {
         if (currentLanguageSpan) {
             currentLanguageSpan.textContent = 'EN';
         }
-        
-        // Update mobile
         if (mobileLanguageSelector) {
             const mobileFlagIcon = mobileLanguageSelector.querySelector('.flag-icon');
             mobileFlagIcon.src = 'https://flagcdn.com/gb.svg';
@@ -298,8 +423,24 @@ function switchLanguage() {
         if (mobileCurrentLanguageSpan) {
             mobileCurrentLanguageSpan.textContent = 'EN';
         }
+    } else if (currentLanguage === 'pl') {
+        if (languageSelector) {
+            const flagIcon = languageSelector.querySelector('.flag-icon');
+            flagIcon.src = 'https://flagcdn.com/pl.svg';
+            flagIcon.alt = 'Polski';
+        }
+        if (currentLanguageSpan) {
+            currentLanguageSpan.textContent = 'PL';
+        }
+        if (mobileLanguageSelector) {
+            const mobileFlagIcon = mobileLanguageSelector.querySelector('.flag-icon');
+            mobileFlagIcon.src = 'https://flagcdn.com/pl.svg';
+            mobileFlagIcon.alt = 'Polski';
+        }
+        if (mobileCurrentLanguageSpan) {
+            mobileCurrentLanguageSpan.textContent = 'PL';
+        }
     } else {
-        // Update desktop
         if (languageSelector) {
             const flagIcon = languageSelector.querySelector('.flag-icon');
             flagIcon.src = 'https://flagcdn.com/de.svg';
@@ -308,8 +449,6 @@ function switchLanguage() {
         if (currentLanguageSpan) {
             currentLanguageSpan.textContent = 'DE';
         }
-        
-        // Update mobile
         if (mobileLanguageSelector) {
             const mobileFlagIcon = mobileLanguageSelector.querySelector('.flag-icon');
             mobileFlagIcon.src = 'https://flagcdn.com/de.svg';
@@ -319,56 +458,53 @@ function switchLanguage() {
             mobileCurrentLanguageSpan.textContent = 'DE';
         }
     }
-    
-    // Update all translatable elements
     updatePageLanguage();
 }
 
 function updatePageLanguage() {
-    const translatableElements = document.querySelectorAll('[data-de][data-en]');
+    const translatableElements = document.querySelectorAll('[data-de][data-en][data-pl]');
     
     translatableElements.forEach(element => {
         const germanText = element.getAttribute('data-de');
         const englishText = element.getAttribute('data-en');
-        
-        if (currentLanguage === 'en') {
-            // Check if the element contains HTML tags
-            if (germanText.includes('<br>') || englishText.includes('<br>')) {
-                element.innerHTML = englishText;
-            } else {
-                element.textContent = englishText;
-            }
+        const polishText = element.getAttribute('data-pl');
+        let text = germanText;
+        if (currentLanguage === 'en') text = englishText;
+        else if (currentLanguage === 'pl') text = polishText;
+        if (text && text.includes('<br>')) {
+            element.innerHTML = text;
         } else {
-            // Check if the element contains HTML tags
-            if (germanText.includes('<br>') || englishText.includes('<br>')) {
-                element.innerHTML = germanText;
-            } else {
-                element.textContent = germanText;
-            }
+            element.textContent = text;
         }
     });
     
     // Handle placeholder translations
-    const placeholderElements = document.querySelectorAll('[data-de-placeholder][data-en-placeholder]');
+    const placeholderElements = document.querySelectorAll('[data-de-placeholder][data-en-placeholder][data-pl-placeholder]');
     placeholderElements.forEach(element => {
         const germanPlaceholder = element.getAttribute('data-de-placeholder');
         const englishPlaceholder = element.getAttribute('data-en-placeholder');
+        const polishPlaceholder = element.getAttribute('data-pl-placeholder');
         
         if (currentLanguage === 'en') {
             element.placeholder = englishPlaceholder;
+        } else if (currentLanguage === 'pl') {
+            element.placeholder = polishPlaceholder;
         } else {
             element.placeholder = germanPlaceholder;
         }
     });
     
     // Handle option translations
-    const optionElements = document.querySelectorAll('option[data-de][data-en]');
+    const optionElements = document.querySelectorAll('option[data-de][data-en][data-pl]');
     optionElements.forEach(element => {
         const germanText = element.getAttribute('data-de');
         const englishText = element.getAttribute('data-en');
+        const polishText = element.getAttribute('data-pl');
         
         if (currentLanguage === 'en') {
             element.textContent = englishText;
+        } else if (currentLanguage === 'pl') {
+            element.textContent = polishText;
         } else {
             element.textContent = germanText;
         }
