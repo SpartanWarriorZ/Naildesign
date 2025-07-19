@@ -277,6 +277,16 @@
     padding: 8px !important;
 }
 
+/* Desktop Logo Container - Transparent in Light Mode */
+@media (min-width: 1025px) {
+    [data-theme="light"] .nav-logo {
+        background: transparent !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+    }
+}
+
 /* Light Mode Input Placeholder Overrides */
 [data-theme="light"] input::placeholder,
 [data-theme="light"] textarea::placeholder,

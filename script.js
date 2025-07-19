@@ -412,8 +412,15 @@ function toggleTheme() {
 function initializeTheme() {
     // Load saved theme from localStorage
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        currentTheme = savedTheme;
+    
+    // Only use saved theme if it's explicitly set to 'light'
+    // Otherwise, always default to 'dark'
+    if (savedTheme === 'light') {
+        currentTheme = 'light';
+    } else {
+        currentTheme = 'dark';
+        // Clear any old theme data to ensure clean state
+        localStorage.removeItem('theme');
     }
     
     // Apply theme
